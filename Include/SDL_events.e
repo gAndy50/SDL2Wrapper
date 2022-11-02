@@ -1,4 +1,6 @@
 include std/ffi.e
+include std/machine.e
+include std/math.e
 
 include SDL_error.e
 include SDL_video.e
@@ -462,6 +464,17 @@ public constant SDL_Event = define_c_type({
 	SDL_DropEvent --[31]
 })
 
+--Add the events as you need them
+constant SIZEOF_SDL_EVENT = math:max({
+	sizeof(C_UINT),
+	sizeof(SDL_CommonEvent),
+	sizeof(SDL_DisplayEvent),
+	sizeof(SDL_WindowEvent),
+	sizeof(SDL_KeyboardEvent)
+})
+
+atom event = allocate_data(SIZEOF_SDL_EVENT)
+
 export constant xSDL_PumpEvents = define_c_proc(sdl,"+SDL_PumpEvents",{})
 
 public procedure SDL_PumpEvents()
@@ -587,4 +600,6 @@ export constant xSDL_RegisterEvents = define_c_func(sdl,"+SDL_RegisterEvents",{C
 public function SDL_RegisterEvents(atom num)
 	return c_func(xSDL_RegisterEvents,{num})
 end function
-­431.41
+
+free(event)
+­2.21
