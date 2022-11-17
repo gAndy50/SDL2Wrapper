@@ -457,7 +457,7 @@ public function SDL_SetWindowFullscreen(atom win,atom flags)
 	return c_func(xSDL_SetWindowFullscreen,{win,flags})
 end function
 
-export constant xSDL_GetWindowSurface = define_c_func(sdl,"+SDL_GetWindowSurface",{C_POINTER},SDL_Surface)
+export constant xSDL_GetWindowSurface = define_c_func(sdl,"+SDL_GetWindowSurface",{C_POINTER},C_POINTER)
 
 public function SDL_GetWindowSurface(atom win)
 	return c_func(xSDL_GetWindowSurface,{win})
@@ -721,4 +721,4 @@ export constant xSDL_GL_DeleteContext = define_c_proc(sdl,"+SDL_GL_DeleteContext
 public procedure SDL_GL_DeleteContext(atom ctx)
 	c_proc(xSDL_GL_DeleteContext,{ctx})
 end procedure
-­48.73
+­460.103
