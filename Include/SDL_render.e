@@ -113,7 +113,7 @@ end function
 
 export constant xSDL_CreateTextureFromSurface = define_c_func(sdl,"+SDL_CreateTextureFromSurface",{C_POINTER,SDL_Surface},C_POINTER)
 
-public function SDL_CreateTextureFromSurface(atom ren,sequence surf)
+public function SDL_CreateTextureFromSurface(atom ren,atom surf)
 	return c_func(xSDL_CreateTextureFromSurface,{ren,surf})
 end function
 
@@ -536,4 +536,4 @@ export constant xSDL_RenderSetVSync = define_c_func(sdl,"+SDL_RenderSetVSync",{C
 public function SDL_RenderSetVSync(atom ren,atom v)
 	return c_func(xSDL_RenderSetVSync,{ren,v})
 end function
-­477.51
+­116.58
