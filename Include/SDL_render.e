@@ -185,31 +185,31 @@ end function
 
 export constant xSDL_UpdateTexture = define_c_func(sdl,"+SDL_UpdateTexture",{C_POINTER,SDL_Rect,C_POINTER,C_INT},C_INT)
 
-public function SDL_UpdateTexture(atom tex,sequence rect,atom pix,atom pit)
+public function SDL_UpdateTexture(atom tex,atom rect,atom pix,atom pit)
 	return c_func(xSDL_UpdateTexture,{tex,rect,pix,pit})
 end function
 
 export constant xSDL_UpdateYUVTexture = define_c_func(sdl,"+SDL_UpdateYUVTexture",{C_POINTER,SDL_Rect,C_POINTER,C_INT,C_POINTER,C_INT,C_POINTER,C_INT},C_INT)
 
-public function SDL_UpdateYUVTexture(atom tex,sequence rect,atom yplane,atom ypit,atom uplane,atom upit,atom vplane,atom vpit)
+public function SDL_UpdateYUVTexture(atom tex,atom rect,atom yplane,atom ypit,atom uplane,atom upit,atom vplane,atom vpit)
 	return c_func(xSDL_UpdateYUVTexture,{tex,rect,yplane,ypit,uplane,upit,vplane,vpit})
 end function
 
 export constant xSDL_UpdateNVTexture = define_c_func(sdl,"+SDL_UpdateNVTexture",{C_POINTER,SDL_Rect,C_POINTER,C_INT,C_POINTER,C_INT},C_INT)
 
-public function SDL_UpdateNVTexture(atom tex,sequence rect,atom yplane,atom ypit,atom uvplane,atom uvpit)
+public function SDL_UpdateNVTexture(atom tex,atom rect,atom yplane,atom ypit,atom uvplane,atom uvpit)
 	return c_func(xSDL_UpdateNVTexture,{tex,rect,yplane,ypit,uvplane,uvpit})
 end function
 
 export constant xSDL_LockTexture = define_c_func(sdl,"+SDL_LockTexture",{C_POINTER,SDL_Rect,C_POINTER,C_POINTER},C_INT)
 
-public function SDL_LockTexture(atom tex,sequence rect,atom pix,atom pit)
+public function SDL_LockTexture(atom tex,atom rect,atom pix,atom pit)
 	return c_func(xSDL_LockTexture,{tex,rect,pix,pit})
 end function
 
 export constant xSDL_LockTextureToSurface = define_c_func(sdl,"+SDL_LockTextureToSurface",{C_POINTER,SDL_Rect,SDL_Surface},C_INT)
 
-public function SDL_LockTextureToSurface(atom tex,sequence rect,sequence surf)
+public function SDL_LockTextureToSurface(atom tex,atom rect,atom surf)
 	return c_func(xSDL_LockTextureToSurface,{tex,rect,surf})
 end function
 
@@ -263,25 +263,25 @@ end function
 
 export constant xSDL_RenderSetViewport = define_c_func(sdl,"+SDL_RenderSetViewport",{C_POINTER,SDL_Rect},C_INT)
 
-public function SDL_RenderSetViewport(atom ren,sequence rect)
+public function SDL_RenderSetViewport(atom ren,atom rect)
 	return c_func(xSDL_RenderSetViewport,{ren,rect})
 end function
 
 export constant xSDL_RenderGetViewport = define_c_proc(sdl,"+SDL_RenderGetViewport",{C_POINTER,SDL_Rect})
 
-public procedure SDL_RenderGetViewport(atom ren,sequence rect)
+public procedure SDL_RenderGetViewport(atom ren,atom rect)
 	c_proc(xSDL_RenderGetViewport,{ren,rect})
 end procedure
 
 export constant xSDL_RenderSetClipRect = define_c_func(sdl,"+SDL_RenderSetClipRect",{C_POINTER,SDL_Rect},C_INT)
 
-public function SDL_RenderSetClipRect(atom ren,sequence rect)
+public function SDL_RenderSetClipRect(atom ren,atom rect)
 	return c_func(xSDL_RenderSetClipRect,{ren,rect})
 end function
 
 export constant xSDL_RenderGetClipRect = define_c_proc(sdl,"+SDL_RenderGetClipRect",{C_POINTER,SDL_Rect})
 
-public procedure SDL_RenderGetClipRect(atom ren,sequence rect)
+public procedure SDL_RenderGetClipRect(atom ren,atom rect)
 	c_proc(xSDL_RenderGetClipRect,{ren,rect})
 end procedure
 
@@ -353,7 +353,7 @@ end function
 
 export constant xSDL_RenderDrawPoints = define_c_func(sdl,"+SDL_RenderDrawPoints",{C_POINTER,SDL_Point,C_INT},C_INT)
 
-public function SDL_RenderDrawPoints(atom ren,sequence pts,atom cnt)
+public function SDL_RenderDrawPoints(atom ren,atom pts,atom cnt)
 	return c_func(xSDL_RenderDrawPoints,{ren,pts,cnt})
 end function
 
@@ -365,43 +365,43 @@ end function
 
 export constant xSDL_RenderDrawLines = define_c_func(sdl,"+SDL_RenderDrawLines",{C_POINTER,SDL_Point,C_INT},C_INT)
 
-public function SDL_RenderDrawLines(atom ren,sequence pts,atom cnt)
+public function SDL_RenderDrawLines(atom ren,atom pts,atom cnt)
 	return c_func(xSDL_RenderDrawLines,{ren,pts,cnt})
 end function
 
 export constant xSDL_RenderDrawRect = define_c_func(sdl,"+SDL_RenderDrawRect",{C_POINTER,SDL_Rect},C_INT)
 
-public function SDL_RenderDrawRect(atom ren,sequence rect)
+public function SDL_RenderDrawRect(atom ren,atom rect)
 	return c_func(xSDL_RenderDrawRect,{ren,rect})
 end function
 
 export constant xSDL_RenderDrawRects = define_c_func(sdl,"+SDL_RenderDrawRects",{C_POINTER,SDL_Rect,C_INT},C_INT)
 
-public function SDL_RenderDrawRects(atom ren,sequence rect,atom cnt)
+public function SDL_RenderDrawRects(atom ren,atom rect,atom cnt)
 	return c_func(xSDL_RenderDrawRects,{ren,rect,cnt})
 end function
 
 export constant xSDL_RenderFillRect = define_c_func(sdl,"+SDL_RenderFillRect",{C_POINTER,SDL_Rect},C_INT)
 
-public function SDL_RenderFillRect(atom ren,sequence rect)
+public function SDL_RenderFillRect(atom ren,atom rect)
 	return c_func(xSDL_RenderFillRect,{ren,rect})
 end function
 
 export constant xSDL_RenderFillRects = define_c_func(sdl,"+SDL_RenderFillRects",{C_POINTER,SDL_Rect,C_INT},C_INT)
 
-public function SDL_RenderFillRects(atom ren,sequence rect,atom cnt)
+public function SDL_RenderFillRects(atom ren,atom rect,atom cnt)
 	return c_func(xSDL_RenderFillRects,{ren,rect,cnt})
 end function
 
 export constant xSDL_RenderCopy = define_c_func(sdl,"+SDL_RenderCopy",{C_POINTER,C_POINTER,SDL_Rect,SDL_Rect},C_INT)
 
-public function SDL_RenderCopy(atom ren,atom tex,sequence src,sequence dst)
+public function SDL_RenderCopy(atom ren,atom tex,atom src,atom dst)
 	return c_func(xSDL_RenderCopy,{ren,tex,src,dst})
 end function
 
 export constant xSDL_RenderCopyEx = define_c_func(sdl,"+SDL_RenderCopyEx",{C_POINTER,C_POINTER,SDL_Rect,SDL_Rect,C_DOUBLE,SDL_Point,C_INT},C_INT)
 
-public function SDL_RenderCopyEx(atom ren,atom tex,sequence src,sequence dst,atom ang,sequence center,SDL_RendererFlip flip)
+public function SDL_RenderCopyEx(atom ren,atom tex,atom src,atom dst,atom ang,atom center,SDL_RendererFlip flip)
 	return c_func(xSDL_RenderCopyEx,{ren,tex,src,dst,ang,center,flip})
 end function
 
@@ -413,7 +413,7 @@ end function
 
 export constant xSDL_RenderDrawPointsF = define_c_func(sdl,"+SDL_RenderDrawPointsF",{C_POINTER,SDL_FPoint,C_INT},C_INT)
 
-public function SDL_RenderDrawPointsF(atom ren,sequence pts,atom cnt)
+public function SDL_RenderDrawPointsF(atom ren,atom pts,atom cnt)
 	return c_func(xSDL_RenderDrawPointsF,{ren,pts,cnt})
 end function
 
@@ -425,19 +425,19 @@ end function
 
 export constant xSDL_RenderDrawLinesF = define_c_func(sdl,"+SDL_RenderDrawLinesF",{C_POINTER,SDL_FPoint,C_INT},C_INT)
 
-public function SDL_RenderDrawLinesF(atom ren,sequence pts,atom cnt)
+public function SDL_RenderDrawLinesF(atom ren,atom pts,atom cnt)
 	return c_func(xSDL_RenderDrawLinesF,{ren,pts,cnt})
 end function
 
 export constant xSDL_RenderDrawRectF = define_c_func(sdl,"+SDL_RenderDrawRectF",{C_POINTER,SDL_FRect},C_INT)
 
-public function SDL_RenderDrawRectF(atom ren,sequence rect)
+public function SDL_RenderDrawRectF(atom ren,atom rect)
 	return c_func(xSDL_RenderDrawRectF,{ren,rect})
 end function
 
 export constant xSDL_RenderDrawRectsF = define_c_func(sdl,"+SDL_RenderDrawRectsF",{C_POINTER,SDL_FRect,C_INT},C_INT)
 
-public function SDL_RenderDrawRectsF(atom ren,sequence rect,atom cnt)
+public function SDL_RenderDrawRectsF(atom ren,atom rect,atom cnt)
 	return c_func(xSDL_RenderDrawRectsF,{ren,rect,cnt})
 end function
 
@@ -461,25 +461,25 @@ end function
 
 export constant xSDL_RenderCopyExF = define_c_func(sdl,"+SDL_RenderCopyExF",{C_POINTER,C_POINTER,SDL_Rect,SDL_FRect,C_DOUBLE,SDL_FPoint,C_INT},C_INT)
 
-public function SDL_RenderCopyExF(atom ren,atom tex,sequence src,sequence dst,atom ang,sequence center,SDL_RendererFlip flip)
+public function SDL_RenderCopyExF(atom ren,atom tex,atom src,atom dst,atom ang,atom center,SDL_RendererFlip flip)
 	return c_func(xSDL_RenderCopyExF,{ren,tex,src,dst,ang,center,flip})
 end function
 
 export constant xSDL_RenderGeometry = define_c_func(sdl,"+SDL_RenderGeometry",{C_POINTER,C_POINTER,SDL_Vertex,C_INT,C_POINTER,C_INT},C_INT)
 
-public function SDL_RenderGeometry(atom ren,atom tex,sequence verts,atom num,atom indice,atom num_id)
+public function SDL_RenderGeometry(atom ren,atom tex,atom verts,atom num,atom indice,atom num_id)
 	return c_func(xSDL_RenderGeometry,{ren,tex,verts,num,indice,num_id})
 end function
 
 export constant xSDL_RenderGeometryRaw = define_c_func(sdl,"+SDL_RenderGeometryRaw",{C_POINTER,C_POINTER,C_POINTER,C_INT,SDL_Color,C_INT,C_POINTER,C_INT,C_INT,C_POINTER,C_INT,C_INT},C_INT)
 
-public function SDL_RenderGeometryRaw(atom ren,atom tex,atom xy,atom xy_stride,sequence col,atom color_stride,atom uv,atom uv_stride,atom num_vertices,atom indices,atom num_indices,atom size)
+public function SDL_RenderGeometryRaw(atom ren,atom tex,atom xy,atom xy_stride,atom col,atom color_stride,atom uv,atom uv_stride,atom num_vertices,atom indices,atom num_indices,atom size)
 	return c_func(xSDL_RenderGeometryRaw,{ren,tex,xy,xy_stride,col,color_stride,uv,uv_stride,num_vertices,indices,num_indices,size})
 end function
 
 export constant xSDL_RenderReadPixels = define_c_func(sdl,"+SDL_RenderReadPixels",{C_POINTER,SDL_Rect,C_UINT,C_POINTER,C_INT},C_INT)
 
-public function SDL_RenderReadPixels(atom ren,sequence rect,atom format,atom pix,atom pit)
+public function SDL_RenderReadPixels(atom ren,atom rect,atom format,atom pix,atom pit)
 	return c_func(xSDL_RenderReadPixels,{ren,rect,format,pix,pit})
 end function
 
@@ -536,4 +536,4 @@ export constant xSDL_RenderSetVSync = define_c_func(sdl,"+SDL_RenderSetVSync",{C
 public function SDL_RenderSetVSync(atom ren,atom v)
 	return c_func(xSDL_RenderSetVSync,{ren,v})
 end function
-­116.58
+­482.50

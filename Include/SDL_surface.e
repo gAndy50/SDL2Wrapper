@@ -35,25 +35,25 @@ public enum type SDL_YUV_CONVERSION_MODE
 	SDL_YUV_CONVERSION_AUTOMATIC
 end type
 
-export constant xSDL_CreateRGBSurface = define_c_func(sdl,"+SDL_CreateRGBSurface",{C_UINT,C_INT,C_INT,C_INT,C_UINT,C_UINT,C_UINT,C_UINT},SDL_Surface)
+export constant xSDL_CreateRGBSurface = define_c_func(sdl,"+SDL_CreateRGBSurface",{C_UINT,C_INT,C_INT,C_INT,C_UINT,C_UINT,C_UINT,C_UINT},C_POINTER)
 
 public function SDL_CreateRGBSurface(atom flags,atom w,atom h,atom d,atom r,atom g,atom b,atom a)
 	return c_func(xSDL_CreateRGBSurface,{flags,w,h,d,r,g,b,a})
 end function
 
-export constant xSDL_CreateRGBSurfaceWithFormat = define_c_func(sdl,"+SDL_CreateRGBSurfaceWithFormat",{C_UINT,C_INT,C_INT,C_INT,C_UINT},SDL_Surface)
+export constant xSDL_CreateRGBSurfaceWithFormat = define_c_func(sdl,"+SDL_CreateRGBSurfaceWithFormat",{C_UINT,C_INT,C_INT,C_INT,C_UINT},C_POINTER)
 
 public function SDL_CreateRGBSurfaceWithFormat(atom flags,atom w,atom h,atom d,atom format)
 	return c_func(xSDL_CreateRGBSurfaceWithFormat,{flags,w,h,d,format})
 end function
 
-export constant xSDL_CreateRGBSurfaceFrom = define_c_func(sdl,"+SDL_CreateRGBSurfaceFrom",{C_POINTER,C_INT,C_INT,C_INT,C_INT,C_UINT,C_UINT,C_UINT,C_UINT},SDL_Surface)
+export constant xSDL_CreateRGBSurfaceFrom = define_c_func(sdl,"+SDL_CreateRGBSurfaceFrom",{C_POINTER,C_INT,C_INT,C_INT,C_INT,C_UINT,C_UINT,C_UINT,C_UINT},C_POINTER)
 
 public function SDL_CreateRGBSurfaceFrom(atom pixels,atom w,atom h,atom d,atom p,atom r,atom g,atom b,atom a)
 	return c_func(xSDL_CreateRGBSurfaceFrom,{pixels,w,h,d,p,r,g,b,a})
 end function
 
-export constant xSDL_CreateRGBSurfaceWithFormatFrom = define_c_func(sdl,"+SDL_CreateRGBSurfaceWithFormatFrom",{C_POINTER,C_INT,C_INT,C_INT,C_INT,C_UINT},SDL_Surface)
+export constant xSDL_CreateRGBSurfaceWithFormatFrom = define_c_func(sdl,"+SDL_CreateRGBSurfaceWithFormatFrom",{C_POINTER,C_INT,C_INT,C_INT,C_INT,C_UINT},C_POINTER)
 
 public function SDL_CreateRGBSurfaceWithFormatFrom(atom pixels,atom w,atom h,atom d,atom p,atom format)
 	return c_func(xSDL_CreateRGBSurfaceWithFormatFrom,{pixels,w,h,d,p,format})
@@ -79,11 +79,11 @@ end function
 
 export constant xSDL_UnlockSurface = define_c_proc(sdl,"+SDL_UnlockSurface",{SDL_Surface})
 
-public procedure SDL_UnlockSurface(sequence surface)
+public procedure SDL_UnlockSurface(atom surface)
 	c_proc(xSDL_UnlockSurface,{surface})
 end procedure
 
-export constant xSDL_LoadBMP_RW = define_c_func(sdl,"+SDL_LoadBMP_RW",{C_POINTER,C_INT},SDL_Surface)
+export constant xSDL_LoadBMP_RW = define_c_func(sdl,"+SDL_LoadBMP_RW",{C_POINTER,C_INT},C_POINTER)
 
 public function SDL_LoadBMP_RW(atom src,atom freesrc)
 	return c_func(xSDL_LoadBMP_RW,{src,freesrc})
@@ -97,109 +97,109 @@ end function
 
 export constant xSDL_SaveBMP_RW = define_c_func(sdl,"+SDL_SaveBMP_RW",{SDL_Surface,C_POINTER,C_INT},C_INT)
 
-public function SDL_SaveBMP_RW(sequence surface,sequence dst,atom freedst)
+public function SDL_SaveBMP_RW(atom surface,atom dst,atom freedst)
 	return c_func(xSDL_SaveBMP_RW,{surface,dst,freedst})
 end function
 
 export constant xSDL_SaveBMP = define_c_func(sdl,"+SDL_SaveBMP",{C_POINTER},C_POINTER)
 
-public function SDL_SaveBMP(sequence surf,sequence file)
+public function SDL_SaveBMP(atom surf,sequence file)
 	return SDL_SaveBMP_RW(surf, SDL_RWFromFile(file,"wb"),1)
 end function
 
 export constant xSDL_SetSurfaceRLE = define_c_func(sdl,"+SDL_SetSurfaceRLE",{SDL_Surface,C_INT},C_INT)
 
-public function SDL_SetSurfaceRLE(sequence surface,atom flag)
+public function SDL_SetSurfaceRLE(atom surface,atom flag)
 	return c_func(xSDL_SetSurfaceRLE,{surface,flag})
 end function
 
 export constant xSDL_HasSurfaceRLE = define_c_func(sdl,"+SDL_HasSurfaceRLE",{SDL_Surface},C_BOOL)
 
-public function SDL_HasSurfaceRLE(sequence surface)
+public function SDL_HasSurfaceRLE(atom surface)
 	return c_func(xSDL_HasSurfaceRLE,{surface})
 end function
 
 export constant xSDL_SetColorKey = define_c_func(sdl,"+SDL_SetColorKey",{SDL_Surface,C_INT,C_UINT},C_INT)
 
-public function SDL_SetColorKey(sequence surface,atom flag,atom key)
+public function SDL_SetColorKey(atom surface,atom flag,atom key)
 	return c_func(xSDL_SetColorKey,{surface,flag,key})
 end function
 
 export constant xSDL_HasColorKey = define_c_func(sdl,"+SDL_HasColorKey",{SDL_Surface},C_BOOL)
 
-public function SDL_HasColorKey(sequence surface)
+public function SDL_HasColorKey(atom surface)
 	return c_func(xSDL_HasColorKey,{surface})
 end function
 
 export constant xSDL_GetColorKey = define_c_func(sdl,"+SDL_GetColorKey",{SDL_Surface,C_POINTER},C_INT)
 
-public function SDL_GetColorKey(sequence surface,atom key)
+public function SDL_GetColorKey(atom surface,atom key)
 	return c_func(xSDL_GetColorKey,{surface,key})
 end function
 
 export constant xSDL_SetSurfaceColorMod = define_c_func(sdl,"+SDL_SetSurfaceColorMod",{SDL_Surface,C_UINT,C_UINT,C_UINT},C_INT)
 
-public function SDL_SetSurfaceColorMod(sequence surface,atom r,atom g,atom b)
+public function SDL_SetSurfaceColorMod(atom surface,atom r,atom g,atom b)
 	return c_func(xSDL_SetSurfaceColorMod,{surface,r,g,b})
 end function
 
 export constant xSDL_GetSurfaceColorMod = define_c_func(sdl,"+SDL_GetSurfaceColorMod",{SDL_Surface,C_POINTER,C_POINTER,C_POINTER},C_INT)
 
-public function SDL_GetSurfaceColorMod(sequence surface,atom r,atom g,atom b)
+public function SDL_GetSurfaceColorMod(atom surface,atom r,atom g,atom b)
 	return c_func(xSDL_GetSurfaceColorMod,{surface,r,g,b})
 end function
 
 export constant xSDL_SetSurfaceAlphaMod = define_c_func(sdl,"+SDL_SetSurfaceAlphaMod",{SDL_Surface,C_UINT},C_INT)
 
-public function SDL_SetSurfaceAlphaMod(sequence surface,atom alpha)
+public function SDL_SetSurfaceAlphaMod(atom surface,atom alpha)
 	return c_func(xSDL_SetSurfaceAlphaMod,{surface,alpha})
 end function
 
 export constant xSDL_GetSurfaceAlphaMod = define_c_func(sdl,"+SDL_GetSurfaceAlphaMod",{SDL_Surface,C_POINTER},C_INT)
 
-public function SDL_GetSurfaceAlphaMod(sequence surface,atom alpha)
+public function SDL_GetSurfaceAlphaMod(atom surface,atom alpha)
 	return c_func(xSDL_GetSurfaceAlphaMod,{surface,alpha})
 end function
 
 export constant xSDL_SetSurfaceBlendMode = define_c_func(sdl,"+SDL_SetSurfaceBlendMode",{SDL_Surface,C_INT},C_INT)
 
-public function SDL_SetSurfaceBlendMode(sequence surface,atom mode)
+public function SDL_SetSurfaceBlendMode(atom surface,atom mode)
 	return c_func(xSDL_SetSurfaceBlendMode,{surface,mode})
 end function
 
 export constant xSDL_GetSurfaceBlendMode = define_c_func(sdl,"+SDL_GetSurfaceBlendMode",{SDL_Surface,C_POINTER},C_INT)
 
-public function SDL_GetSurfaceBlendMode(sequence surface,atom mode)
+public function SDL_GetSurfaceBlendMode(atom surface,atom mode)
 	return c_func(xSDL_GetSurfaceBlendMode,{surface,mode})	
 end function
 
 export constant xSDL_SetClipRect = define_c_func(sdl,"+SDL_SetClipRect",{SDL_Surface,SDL_Rect},C_BOOL)
 
-public function SDL_SetClipRect(sequence surface,sequence rect)
+public function SDL_SetClipRect(atom surface,atom rect)
 	return c_func(xSDL_SetClipRect,{surface,rect})
 end function
 
-export constant xSDL_GetClipRect = define_c_proc(sdl,"+SDL_GetClipRect",{SDL_Surface,SDL_Rect})
+export constant xSDL_GetClipRect = define_c_proc(sdl,"+SDL_GetClipRect",{SDL_Surface,C_POINTER})
 
-public procedure SDL_GetClipRect(sequence surface,sequence rect)
+public procedure SDL_GetClipRect(atom surface,atom rect)
 	c_proc(xSDL_GetClipRect,{surface,rect})
 end procedure
 
-export constant xSDL_DuplicateSurface = define_c_func(sdl,"+SDL_DuplicateSurface",{SDL_Surface},SDL_Surface)
+export constant xSDL_DuplicateSurface = define_c_func(sdl,"+SDL_DuplicateSurface",{SDL_Surface},C_POINTER)
 
-public function SDL_DuplicateSurface(sequence surface)
+public function SDL_DuplicateSurface(atom surface)
 	return c_func(xSDL_DuplicateSurface,{surface})
 end function
 
-export constant xSDL_ConvertSurface = define_c_func(sdl,"+SDL_ConvertSurface",{SDL_Surface,SDL_PixelFormat,C_UINT},SDL_Surface)
+export constant xSDL_ConvertSurface = define_c_func(sdl,"+SDL_ConvertSurface",{SDL_Surface,SDL_PixelFormat,C_UINT},C_POINTER)
 
-public function SDL_ConvertSurface(sequence src,sequence fmt,atom flags)
+public function SDL_ConvertSurface(atom src,atom fmt,atom flags)
 	return c_func(xSDL_ConvertSurface,{src,fmt,flags})
 end function
 
-export constant xSDL_ConvertSurfaceFormat = define_c_func(sdl,"+SDL_ConvertSurfaceFormat",{SDL_Surface,C_UINT,C_UINT},SDL_Surface)
+export constant xSDL_ConvertSurfaceFormat = define_c_func(sdl,"+SDL_ConvertSurfaceFormat",{SDL_Surface,C_UINT,C_UINT},C_POINTER)
 
-public function SDL_ConvertSurfaceFormat(sequence src,atom format,atom flags)
+public function SDL_ConvertSurfaceFormat(atom src,atom format,atom flags)
 	return c_func(xSDL_ConvertSurfaceFormat,{src,format,flags})
 end function
 
@@ -217,49 +217,49 @@ end function
 
 export constant xSDL_FillRect = define_c_func(sdl,"+SDL_FillRect",{SDL_Surface,SDL_Rect,C_UINT},C_INT)
 
-public function SDL_FillRect(sequence dst,sequence rect,atom col)
+public function SDL_FillRect(atom dst,atom rect,atom col)
 	return c_func(xSDL_FillRect,{dst,rect,col})
 end function
 
 export constant xSDL_FillRects = define_c_func(sdl,"+SDL_FillRects",{SDL_Surface,SDL_Rect,C_INT,C_UINT},C_INT)
 
-public function SDL_FillRects(sequence dst,sequence rects,atom count,atom col)
+public function SDL_FillRects(atom dst,atom rects,atom count,atom col)
 	return c_func(xSDL_FillRects,{dst,rects,count,col})
 end function
 
 export constant xSDL_UpperBlit = define_c_func(sdl,"+SDL_UpperBlit",{SDL_Surface,SDL_Rect,SDL_Surface,SDL_Rect},C_INT)
 
-public function SDL_UpperBlit(sequence src,sequence srcrect,sequence dst,sequence dstrect)
+public function SDL_UpperBlit(atom src,atom srcrect,atom dst,atom dstrect)
 	return c_func(xSDL_UpperBlit,{src,srcrect,dst,dstrect})
 end function
 
 export constant xSDL_LowerBlit = define_c_func(sdl,"+SDL_LowerBlit",{SDL_Surface,SDL_Rect,SDL_Surface,SDL_Rect},C_INT)
 
-public function SDL_LowerBlit(sequence src,sequence srcrect,sequence dst,sequence dstrect)
+public function SDL_LowerBlit(atom src,atom srcrect,atom dst,atom dstrect)
 	return c_func(xSDL_LowerBlit,{src,srcrect,dst,dstrect})
 end function
 
 export constant xSDL_SoftStretch = define_c_func(sdl,"+SDL_SoftStretch",{SDL_Surface,SDL_Rect,SDL_Surface,SDL_Rect},C_INT)
 
-public function SDL_SoftStretch(sequence src,sequence srcrect,sequence dst,sequence dstrect)
+public function SDL_SoftStretch(atom src,atom srcrect,atom dst,atom dstrect)
 	return c_func(xSDL_SoftStretch,{src,srcrect,dst,dstrect})
 end function
 
 export constant xSDL_SoftStretchLinear = define_c_func(sdl,"+SDL_SoftStretchLinear",{SDL_Surface,SDL_Rect,SDL_Surface,SDL_Rect},C_INT)
 
-public function SDL_SoftStretchLinear(sequence src,sequence srcrect,sequence dst,sequence dstrect)
+public function SDL_SoftStretchLinear(atom src,atom srcrect,atom dst,atom dstrect)
 	return c_func(xSDL_SoftStretchLinear,{src,srcrect,dst,dstrect})
 end function
 
 export constant xSDL_UpperBlitScaled = define_c_func(sdl,"+SDL_UpperBlitScaled",{SDL_Surface,SDL_Rect,SDL_Surface,SDL_Rect},C_INT)
 
-public function SDL_UpperBlitScaled(sequence src,sequence srcrect,sequence dst,sequence dstrect)
+public function SDL_UpperBlitScaled(atom src,atom srcrect,atom dst,atom dstrect)
 	return c_func(xSDL_UpperBlitScaled,{src,srcrect,dst,dstrect})
 end function
 
 export constant xSDL_LowerBlitScaled = define_c_func(sdl,"+SDL_LowerBlitScaled",{SDL_Surface,SDL_Rect,SDL_Surface,SDL_Rect},C_INT)
 
-public function SDL_LowerBlitScaled(sequence src,sequence srcrect,sequence dst,sequence dstrect)
+public function SDL_LowerBlitScaled(atom src,atom srcrect,atom dst,atom dstrect)
 	return c_func(xSDL_LowerBlitScaled,{src,srcrect,dst,dstrect})
 end function
 
@@ -280,4 +280,4 @@ export constant xSDL_GetYUVConversionModeForResolution = define_c_func(sdl,"+SDL
 public function SDL_GetYUVConversionModeForResolution(atom w,atom h)
 	return c_func(xSDL_GetYUVConversionModeForResolution,{w,h})
 end function
-­26.9
+­262.71
