@@ -465,15 +465,15 @@ public constant SDL_Event = define_c_type({
 })
 
 --Add the events as you need them
-constant SIZEOF_SDL_EVENT = math:max({
-	sizeof(C_UINT),
-	sizeof(SDL_CommonEvent),
-	sizeof(SDL_DisplayEvent),
-	sizeof(SDL_WindowEvent),
-	sizeof(SDL_KeyboardEvent)
-})
+--constant SIZEOF_SDL_EVENT = math:max({
+--	sizeof(C_UINT),
+--	sizeof(SDL_CommonEvent),
+--	sizeof(SDL_DisplayEvent),
+--	sizeof(SDL_WindowEvent),
+--	sizeof(SDL_KeyboardEvent)
+--})
 
-atom event = allocate_data(SIZEOF_SDL_EVENT)
+--atom event = allocate_data(SIZEOF_SDL_EVENT)
 
 export constant xSDL_PumpEvents = define_c_proc(sdl,"+SDL_PumpEvents",{})
 
@@ -601,5 +601,5 @@ public function SDL_RegisterEvents(atom num)
 	return c_func(xSDL_RegisterEvents,{num})
 end function
 
-free(event)
-­2.21
+--free(event)
+­574.0
