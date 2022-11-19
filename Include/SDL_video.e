@@ -195,13 +195,13 @@ end function
 
 export constant xSDL_GetDisplayBounds = define_c_func(sdl,"+SDL_GetDisplayBounds",{C_INT,SDL_Rect},C_INT)
 
-public function SDL_GetDisplayBounds(atom displayIndex,sequence rect)
+public function SDL_GetDisplayBounds(atom displayIndex,atom rect)
 	return c_func(xSDL_GetDisplayBounds,{displayIndex,rect})
 end function
 
 export constant xSDL_GetDisplayUsableBounds = define_c_func(sdl,"+SDL_GetDisplayUsableBounds",{C_INT,SDL_Rect},C_INT)
 
-public function SDL_GetDisplayUsableBounds(atom displayIndex,sequence rect)
+public function SDL_GetDisplayUsableBounds(atom displayIndex,atom rect)
 	return c_func(xSDL_GetDisplayUsableBounds,{displayIndex,rect})
 end function
 
@@ -225,31 +225,31 @@ end function
 
 export constant xSDL_GetDisplayMode = define_c_func(sdl,"+SDL_GetDisplayMode",{C_INT,C_INT,SDL_DisplayMode},C_INT)
 
-public function SDL_GetDisplayMode(atom displayIndex,atom modeIndex,sequence mode)
+public function SDL_GetDisplayMode(atom displayIndex,atom modeIndex,atom mode)
 	return c_func(xSDL_GetDisplayMode,{displayIndex,modeIndex,mode})
 end function
 
 export constant xSDL_GetDesktopDisplayMode = define_c_func(sdl,"+SDL_GetDesktopDisplayMode",{C_INT,SDL_DisplayMode},C_INT)
 
-public function SDL_GetDesktopDisplayMode(atom displayIndex,sequence mode)
+public function SDL_GetDesktopDisplayMode(atom displayIndex,atom mode)
 	return c_func(xSDL_GetDesktopDisplayMode,{displayIndex,mode})
 end function
 
 export constant xSDL_GetCurrentDisplayMode = define_c_func(sdl,"+SDL_GetCurrentDisplayMode",{C_INT,SDL_DisplayMode},C_INT)
 
-public function SDL_GetCurrentDisplayMode(atom displayIndex,sequence mode)
+public function SDL_GetCurrentDisplayMode(atom displayIndex,atom mode)
 	return c_func(xSDL_GetCurrentDisplayMode,{displayIndex,mode})
 end function
 
-export constant xSDL_GetClosestDisplayMode = define_c_func(sdl,"+SDL_GetClosestDisplayMode",{C_INT,SDL_DisplayMode,SDL_DisplayMode},SDL_DisplayMode)
+export constant xSDL_GetClosestDisplayMode = define_c_func(sdl,"+SDL_GetClosestDisplayMode",{C_INT,SDL_DisplayMode,SDL_DisplayMode},C_POINTER)
 
-public function SDL_GetClosestDisplayMode(atom displayIndex,sequence mode,atom closest)
+public function SDL_GetClosestDisplayMode(atom displayIndex,atom mode,atom closest)
 	return c_func(xSDL_GetClosestDisplayMode,{displayIndex,mode,closest})
 end function
 
 export constant xSDL_GetPointDisplayIndex = define_c_func(sdl,"+SDL_GetPointDisplayIndex",{SDL_Point},C_INT)
 
-public function SDL_GetPointDisplayIndex(sequence pt)
+public function SDL_GetPointDisplayIndex(atom pt)
 	return c_func(xSDL_GetPointDisplayIndex,{pt})
 end function
 
@@ -267,7 +267,7 @@ end function
 
 export constant xSDL_GetWindowDisplayMode = define_c_func(sdl,"+SDL_GetWindowDisplayMode",{C_POINTER,SDL_DisplayMode},C_INT)
 
-public function SDL_GetWindowDisplayMode(atom win,sequence mode)
+public function SDL_GetWindowDisplayMode(atom win,atom mode)
 	return c_func(xSDL_GetWindowDisplayMode,{win,mode})
 end function
 
@@ -327,7 +327,7 @@ end function
 
 export constant xSDL_SetWindowIcon = define_c_proc(sdl,"+SDL_SetWindowIcon",{C_POINTER,SDL_Surface})
 
-public procedure SDL_SetWindowIcon(atom win,sequence icon)
+public procedure SDL_SetWindowIcon(atom win,atom icon)
 	c_proc(xSDL_SetWindowIcon,{win,icon})
 end procedure
 
@@ -471,7 +471,7 @@ end function
 
 export constant xSDL_UpdateWindowSurfaceRects = define_c_func(sdl,"+SDL_UpdateWindowSurfaceRects",{C_POINTER,SDL_Rect,C_INT},C_INT)
 
-public function SDL_UpdateWindowSurfaceRects(atom win,sequence rects,atom num)
+public function SDL_UpdateWindowSurfaceRects(atom win,atom rects,atom num)
 	return c_func(xSDL_UpdateWindowSurfaceRects,{win,rects,num})
 end function
 
@@ -523,7 +523,7 @@ public function SDL_SetWindowMouseRect(atom win,sequence rect)
 	return c_func(xSDL_SetWindowMouseRect,{win,rect})
 end function
 
-export constant xSDL_GetWindowMouseRect = define_c_func(sdl,"+SDL_GetWindowMouseRect",{C_POINTER},SDL_Rect)
+export constant xSDL_GetWindowMouseRect = define_c_func(sdl,"+SDL_GetWindowMouseRect",{C_POINTER},C_POINTER)
 
 public function SDL_GetWindowMouseRect(atom win)
 	return c_func(xSDL_GetWindowMouseRect,{win})
@@ -721,4 +721,4 @@ export constant xSDL_GL_DeleteContext = define_c_proc(sdl,"+SDL_GL_DeleteContext
 public procedure SDL_GL_DeleteContext(atom ctx)
 	c_proc(xSDL_GL_DeleteContext,{ctx})
 end procedure
-­460.103
+­526.107

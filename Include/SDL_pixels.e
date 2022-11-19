@@ -124,7 +124,7 @@ end function
 
 export constant xSDL_FreeFormat = define_c_proc(sdl,"+SDL_FreeFormat",{SDL_PixelFormat})
 
-public procedure SDL_FreeFormat(sequence format)
+public procedure SDL_FreeFormat(atom format)
 	c_proc(xSDL_FreeFormat,{format})
 end procedure
 
@@ -136,43 +136,43 @@ end function
 
 export constant xSDL_SetPixelFormatPalette = define_c_func(sdl,"+SDL_SetPixelFormatPalette",{SDL_PixelFormat,SDL_Palette},C_INT)
 
-public function SDL_SetPixelFormatPalette(sequence format,sequence palette)
+public function SDL_SetPixelFormatPalette(atom format,atom palette)
 	return c_func(xSDL_SetPixelFormatPalette,{format,palette})
 end function
 
 export constant xSDL_SetPaletteColors = define_c_func(sdl,"+SDL_SetPaletteColors",{SDL_Palette,SDL_Color,C_INT,C_INT},C_INT)
 
-public function SDL_SetPaletteColors(sequence palette,sequence colors,atom first,atom ncol)
+public function SDL_SetPaletteColors(atom palette,atom colors,atom first,atom ncol)
 	return c_func(xSDL_SetPaletteColors,{palette,colors,first,ncol})
 end function
 
 export constant xSDL_FreePalette = define_c_proc(sdl,"+SDL_FreePalette",{SDL_Palette})
 
-public procedure SDL_FreePalette(sequence pal)
+public procedure SDL_FreePalette(atom pal)
 	c_proc(xSDL_FreePalette,{pal})
 end procedure
 
 export constant xSDL_MapRGB = define_c_func(sdl,"+SDL_MapRGB",{SDL_PixelFormat,C_UINT,C_UINT,C_UINT},C_UINT)
 
-public function SDL_MapRGB(sequence format,atom r,atom g,atom b)
+public function SDL_MapRGB(atom format,atom r,atom g,atom b)
 	return c_func(xSDL_MapRGB,{format,r,g,b})
 end function
 
 export constant xSDL_MapRGBA = define_c_func(sdl,"+SDL_MapRGBA",{SDL_PixelFormat,C_UINT,C_UINT,C_UINT,C_UINT},C_UINT)
 
-public function SDL_MapRGBA(sequence format,atom r,atom g,atom b,atom a)
+public function SDL_MapRGBA(atom format,atom r,atom g,atom b,atom a)
 	return c_func(xSDL_MapRGBA,{format,r,g,b,a})
 end function
 
 export constant xSDL_GetRGB = define_c_proc(sdl,"+SDL_GetRGB",{C_UINT,SDL_PixelFormat,C_POINTER,C_POINTER,C_POINTER})
 
-public procedure SDL_GetRGB(atom pixel,sequence format,atom r,atom g,atom b)
+public procedure SDL_GetRGB(atom pixel,atom format,atom r,atom g,atom b)
 	c_proc(xSDL_GetRGB,{pixel,format,r,g,b})
 end procedure
 
 export constant xSDL_GetRGBA = define_c_proc(sdl,"+SDL_GetRGBA",{C_UINT,SDL_PixelFormat,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 
-public procedure SDL_GetRGBA(atom pixel,sequence format,atom r,atom g,atom b,atom a)
+public procedure SDL_GetRGBA(atom pixel,atom format,atom r,atom g,atom b,atom a)
 	c_proc(xSDL_GetRGBA,{pixel,format,r,g,b,a})
 end procedure
 
@@ -181,4 +181,4 @@ export constant xSDL_CalculateGammaRamp = define_c_proc(sdl,"+SDL_CalculateGamma
 public procedure SDL_CalculateGammaRamp(atom gamma,atom ramp)
 	c_proc(xSDL_CalculateGammaRamp,{gamma,ramp})
 end procedure
-­4.0
+­175.44
