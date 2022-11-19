@@ -23,4 +23,5 @@ printf(1,"Has NEON:%d\n",{SDL_HasNEON() })
 printf(1,"Has LSX:%d\n",{SDL_HasLSX() })
 printf(1,"Has LASX:%d\n",{SDL_HasLASX() })
 printf(1,"RAM: %d\n",{SDL_GetSystemRAM() })
-­25.43
+printf(1,"OS: %s\n",{SDL_GetPlatform() })
+­26.39
