@@ -417,4 +417,10 @@ export constant xSDL_GameControllerGetAppleSFSymbolsNameForAxis = define_c_func(
 public function SDL_GameControllerGetAppleSFSymbolsNameForAxis(atom gc,SDL_GameControllerAxis axis)
 	return c_func(xSDL_GameControllerGetAppleSFSymbolsNameForAxis,{gc,axis})
 end function
-­418.73
+
+export constant xSDL_GameControllerGetSensorDataWithTimeStamp = define_c_func(sdl,"+SDL_GameControllerGetSensorDataWithTimeStamp",{C_POINTER,C_INT,C_POINTER,C_POINTER,C_INT},C_INT)
+
+public function SDL_GameControllerGetSensorDataWithTimeStamp(atom gc,atom stype,atom ts,atom data,atom num)
+	return c_func(xSDL_GameControllerGetSensorDataWithTimeStamp,{gc,stype,ts,data,num})
+end function
+­424.84

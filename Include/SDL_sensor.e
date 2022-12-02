@@ -105,4 +105,10 @@ export constant xSDL_SensorUpdate = define_c_proc(sdl,"+SDL_SensorUpdate",{})
 public procedure SDL_SensorUpdate()
 	c_proc(xSDL_SensorUpdate,{})
 end procedure
-­106.29
+
+export constant xSDL_SensorGetDataWithTimeStamp = define_c_func(sdl,"+SDL_SensorGetDataWithTimeStamp",{C_POINTER,C_POINTER,C_POINTER,C_INT},C_INT)
+
+public function SDL_SensorGetDataWithTimeStamp(atom sen,atom ts,atom data,atom num)
+	return c_func(xSDL_SensorGetDataWithTimeStamp,{sen,ts,data,num})
+end function
+­97.21
