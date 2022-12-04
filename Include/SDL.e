@@ -60,6 +60,8 @@ public include SDL_misc.e
 public include SDL_rect.e
 public include SDL_platform.e
 public include SDL_hints.e
+public include SDL_scancode.e 
+public include SDL_keyboard.e 
 
 --SDL Init Flags
 
@@ -106,4 +108,4 @@ export constant xSDL_Quit = define_c_proc(sdl,"+SDL_Quit",{})
 public procedure SDL_Quit()
 	c_proc(xSDL_Quit,{})
 end procedure
-­62.26
+­64.30
