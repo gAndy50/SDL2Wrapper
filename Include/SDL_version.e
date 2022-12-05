@@ -1,22 +1,33 @@
 include std/ffi.e
+include std/machine.e
 
 include sdl.e
 
-public constant SDL_version = define_c_type({
-	C_UINT, --major
-	C_UINT, --minor
-	C_UINT --patch
+public constant SDL_VERSION = define_c_type({
+	C_UINT8, --major
+	C_UINT8, --minor
+	C_UINT8 --patch
 })
 
 public constant SDL_MAJOR_VERSION = 2,
-				SDL_MINOR_VERSION = 24,
+				SDL_MINOR_VERSION = 26,
 				SDL_PATCHLEVEL = 1
 				
-export constant xSDL_GetVersion = define_c_proc(sdl,"+SDL_GetVersion",{SDL_version})
+export constant xSDL_GetVersion = define_c_proc(sdl,"+SDL_GetVersion",{C_POINTER})
 
-public procedure SDL_GetVersion(sequence ver)
+public function SDL_GetVersion()
+
+	atom ver = allocate_struct(SDL_VERSION)
+	
 	c_proc(xSDL_GetVersion,{ver})
-end procedure
+	
+	sequence res = peek_struct(ver,SDL_VERSION)
+	
+	free(ver)
+	
+	return res
+	
+end function
 
 export constant xSDL_GetRevision = define_c_func(sdl,"+SDL_GetRevision",{},C_STRING)
 
@@ -29,4 +40,4 @@ export constant xSDL_GetRevisionNumber = define_c_func(sdl,"+SDL_GetRevisionNumb
 public function SDL_GetRevisionNumber()
 	return c_func(xSDL_GetRevisionNumber,{})
 end function
-­30.41
+­16.19
