@@ -24,4 +24,12 @@ printf(1,"Has LSX:%d\n",{SDL_HasLSX() })
 printf(1,"Has LASX:%d\n",{SDL_HasLASX() })
 printf(1,"RAM: %d\n",{SDL_GetSystemRAM() })
 printf(1,"OS: %s\n",{SDL_GetPlatform() })
-­26.39
+
+sequence ver = SDL_GetVersion()
+
+printf(1,"SDL Version:\n")
+
+printf(1,"Major: %d\n",ver[1])
+printf(1,"Minor: %d\n",ver[2])
+printf(1,"Patch: %d\n",ver[3])
+­34.11
