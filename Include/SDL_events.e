@@ -487,9 +487,9 @@ public enum type SDL_eventaction
 	SDL_GETEVENT
 end type
 
-export constant xSDL_PeepEvents = define_c_func(sdl,"+SDL_PeepEvents",{SDL_Event,C_INT,C_INT,C_UINT,C_UINT},C_INT)
+export constant xSDL_PeepEvents = define_c_func(sdl,"+SDL_PeepEvents",{C_POINTER,C_INT,C_INT,C_UINT,C_UINT},C_INT)
 
-public function SDL_PeepEvents(sequence events,atom num,SDL_eventaction action,atom min,atom max)
+public function SDL_PeepEvents(atom events,atom num,SDL_eventaction action,atom min,atom max)
 	return c_func(xSDL_PeepEvents,{events,num,action,min,max})
 end function
 
@@ -517,27 +517,27 @@ public procedure SDL_FlushEvents(atom min,atom max)
 	c_proc(xSDL_FlushEvents,{min,max})
 end procedure
 
-export constant xSDL_PollEvent = define_c_func(sdl,"+SDL_PollEvent",{SDL_Event},C_INT)
+export constant xSDL_PollEvent = define_c_func(sdl,"+SDL_PollEvent",{C_POINTER},C_INT)
 
-public function SDL_PollEvent(sequence evt)
+public function SDL_PollEvent(atom evt)
 	return c_func(xSDL_PollEvent,{evt})
 end function
 
-export constant xSDL_WaitEvent = define_c_func(sdl,"+SDL_WaitEvent",{SDL_Event},C_INT)
+export constant xSDL_WaitEvent = define_c_func(sdl,"+SDL_WaitEvent",{C_POINTER},C_INT)
 
-public function SDL_WaitEvent(sequence evt)
+public function SDL_WaitEvent(atom evt)
 	return c_func(xSDL_WaitEvent,{evt})
 end function
 
-export constant xSDL_WaitEventTimeout = define_c_func(sdl,"+SDL_WaitEventTimeout",{SDL_Event,C_INT},C_INT)
+export constant xSDL_WaitEventTimeout = define_c_func(sdl,"+SDL_WaitEventTimeout",{C_POINTER,C_INT},C_INT)
 
-public function SDL_WaitEventTimeout(sequence evt,atom tio)
+public function SDL_WaitEventTimeout(atom evt,atom tio)
 	return c_func(xSDL_WaitEventTimeout,{evt,tio})
 end function
 
-export constant xSDL_PushEvent = define_c_func(sdl,"+SDL_PushEvent",{SDL_Event},C_INT)
+export constant xSDL_PushEvent = define_c_func(sdl,"+SDL_PushEvent",{C_POINTER},C_INT)
 
-public function SDL_PushEvent(sequence evt)
+public function SDL_PushEvent(atom evt)
 	return c_func(xSDL_PushEvent,{evt})
 end function
 
@@ -602,4 +602,4 @@ public function SDL_RegisterEvents(atom num)
 end function
 
 --free(event)
-­574.0
+­540.34
