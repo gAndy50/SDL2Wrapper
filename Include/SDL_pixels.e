@@ -1,4 +1,5 @@
 include std/ffi.e
+include std/machine.e
 
 include SDL_endian.e
 
@@ -63,42 +64,42 @@ public enum type SDL_PackedLayout
 end type
 
 export constant SDL_Color = define_c_type({
-	C_UINT, --r
-	C_UINT, --g
-	C_UINT, --b
-	C_UINT --a
+	C_UINT8, --r
+	C_UINT8, --g
+	C_UINT8, --b
+	C_UINT8 --a
 })
 
 public constant SDL_Palette = define_c_type({
 	C_INT, --ncolors
 	SDL_Color, --colors
-	C_UINT, --version
+	C_UINT32, --version
 	C_INT --refcount
 })
 
-export constant SDL_PixelFormat = define_c_type({
+public constant SDL_PixelFormat = define_c_type({
 	C_UINT, --format
 	SDL_Palette, --palette
-	C_UINT, --BitsPerPixel
-	C_UINT, --BytesPerPixel
-	{C_UINT,2}, --padding[2]
-	C_UINT, --Rmask
-	C_UINT, --Gmask
-	C_UINT, --Bmask
-	C_UINT, --Amask
-	C_UINT, --Rloss
-	C_UINT, --Gloss
-	C_UINT, --Bloss
-	C_UINT, --Aloss
-	C_UINT, --Rshift
-	C_UINT, --Gshift
-	C_UINT, --Bshift
-	C_UINT, --Ashift
+	C_UINT8, --BitsPerPixel
+	C_UINT8, --BytesPerPixel
+	{C_UINT8,2}, --padding[2]
+	C_UINT32, --Rmask
+	C_UINT32, --Gmask
+	C_UINT32, --Bmask
+	C_UINT32, --Amask
+	C_UINT8, --Rloss
+	C_UINT8, --Gloss
+	C_UINT8, --Bloss
+	C_UINT8, --Aloss
+	C_UINT8, --Rshift
+	C_UINT8, --Gshift
+	C_UINT8, --Bshift
+	C_UINT8, --Ashift
 	C_INT, --refcount
 	C_POINTER --next
 })
 
-export constant xSDL_GetPixelFormatName = define_c_func(sdl,"+SDL_GetPixelFormatName",{C_UINT},C_STRING)
+export constant xSDL_GetPixelFormatName = define_c_func(sdl,"+SDL_GetPixelFormatName",{C_UINT32},C_STRING)
 
 public function SDL_GetPixelFormatName(atom format)
 	return c_func(xSDL_GetPixelFormatName,{format})
@@ -110,70 +111,124 @@ public function SDL_PixelFormatEnumToMasks(atom format,atom bpp,atom r,atom g,at
 	return c_func(xSDL_PixelFormatEnumToMasks,{format,bpp,r,g,b,a})
 end function
 
-export constant xSDL_MasksToPixelFormatEnum = define_c_func(sdl,"+SDL_MasksToPixelFormatEnum",{C_INT,C_UINT,C_UINT,C_UINT,C_UINT},C_UINT)
+export constant xSDL_MasksToPixelFormatEnum = define_c_func(sdl,"+SDL_MasksToPixelFormatEnum",{C_INT,C_UINT32,C_UINT32,C_UINT32,C_UINT32},C_UINT32)
 
 public function SDL_MasksToPixelFormatEnum(atom bpp,atom r,atom g,atom b,atom a)
 	return c_func(xSDL_MasksToPixelFormatEnum,{bpp,r,g,b,a})
 end function
 
-export constant xSDL_AllocFormat = define_c_func(sdl,"+SDL_AllocFormat",{C_UINT},SDL_PixelFormat)
+export constant xSDL_AllocFormat = define_c_func(sdl,"+SDL_AllocFormat",{C_UINT32},C_POINTER)
 
 public function SDL_AllocFormat(atom pixel_format)
 	return c_func(xSDL_AllocFormat,{pixel_format})
 end function
 
-export constant xSDL_FreeFormat = define_c_proc(sdl,"+SDL_FreeFormat",{SDL_PixelFormat})
+export constant xSDL_FreeFormat = define_c_proc(sdl,"+SDL_FreeFormat",{C_POINTER})
 
-public procedure SDL_FreeFormat(atom format)
-	c_proc(xSDL_FreeFormat,{format})
-end procedure
+public function SDL_FreePixelFormat()
 
-export constant xSDL_AllocPalette = define_c_func(sdl,"+SDL_AllocPalette",{C_INT},SDL_Palette)
+	atom pformat = allocate_struct(SDL_PixelFormat)
+	
+	c_proc(xSDL_FreeFormat,{pformat})
+	
+	sequence res = peek_struct(pformat,SDL_PixelFormat)
+	
+	free(pformat)
+	
+	return res
+end function
+
+export constant xSDL_AllocPalette = define_c_func(sdl,"+SDL_AllocPalette",{C_INT},C_POINTER)
 
 public function SDL_AllocPalette(atom ncolors)
 	return c_func(xSDL_AllocPalette,{ncolors})
 end function
 
-export constant xSDL_SetPixelFormatPalette = define_c_func(sdl,"+SDL_SetPixelFormatPalette",{SDL_PixelFormat,SDL_Palette},C_INT)
+export constant xSDL_SetPixelFormatPalette = define_c_func(sdl,"+SDL_SetPixelFormatPalette",{C_POINTER,C_POINTER},C_INT)
 
 public function SDL_SetPixelFormatPalette(atom format,atom palette)
-	return c_func(xSDL_SetPixelFormatPalette,{format,palette})
+
+	format = allocate_struct(SDL_PixelFormat)
+	palette = allocate_struct(SDL_Palette)
+	
+	sequence res = peek_struct(format,SDL_PixelFormat)
+	sequence res2 = peek_struct(palette,SDL_Palette)
+	
+	free(format)
+	free(palette)
+	
+	return c_func(xSDL_SetPixelFormatPalette,{res,res2})
 end function
 
-export constant xSDL_SetPaletteColors = define_c_func(sdl,"+SDL_SetPaletteColors",{SDL_Palette,SDL_Color,C_INT,C_INT},C_INT)
+export constant xSDL_SetPaletteColors = define_c_func(sdl,"+SDL_SetPaletteColors",{C_POINTER,C_POINTER,C_INT,C_INT},C_INT)
 
 public function SDL_SetPaletteColors(atom palette,atom colors,atom first,atom ncol)
-	return c_func(xSDL_SetPaletteColors,{palette,colors,first,ncol})
+	palette = allocate_struct(SDL_Palette)
+	colors = allocate_struct(SDL_Color)
+	
+	sequence res = peek_struct(palette,SDL_Palette)
+	sequence res2 = peek_struct(colors,SDL_Color)
+	
+	free(palette)
+	free(colors)
+	
+	return c_func(xSDL_SetPaletteColors,{res,res2,first,ncol})
 end function
 
-export constant xSDL_FreePalette = define_c_proc(sdl,"+SDL_FreePalette",{SDL_Palette})
+export constant xSDL_FreePalette = define_c_proc(sdl,"+SDL_FreePalette",{C_POINTER})
 
 public procedure SDL_FreePalette(atom pal)
-	c_proc(xSDL_FreePalette,{pal})
+
+	pal = allocate_struct(SDL_Palette)
+	sequence res = peek_struct(pal,SDL_Palette)
+	
+	free(pal)
+	
+	c_proc(xSDL_FreePalette,{res})
+	
 end procedure
 
-export constant xSDL_MapRGB = define_c_func(sdl,"+SDL_MapRGB",{SDL_PixelFormat,C_UINT,C_UINT,C_UINT},C_UINT)
+export constant xSDL_MapRGB = define_c_func(sdl,"+SDL_MapRGB",{C_POINTER,C_UINT8,C_UINT8,C_UINT8},C_UINT32)
 
 public function SDL_MapRGB(atom format,atom r,atom g,atom b)
-	return c_func(xSDL_MapRGB,{format,r,g,b})
+
+	format = allocate_struct(SDL_PixelFormat)
+	sequence res = peek_struct(format,SDL_PixelFormat)
+	
+	free(format)
+	
+	return c_func(xSDL_MapRGB,{res,r,g,b})
 end function
 
-export constant xSDL_MapRGBA = define_c_func(sdl,"+SDL_MapRGBA",{SDL_PixelFormat,C_UINT,C_UINT,C_UINT,C_UINT},C_UINT)
+export constant xSDL_MapRGBA = define_c_func(sdl,"+SDL_MapRGBA",{C_POINTER,C_UINT8,C_UINT8,C_UINT8,C_UINT8},C_UINT32)
 
 public function SDL_MapRGBA(atom format,atom r,atom g,atom b,atom a)
-	return c_func(xSDL_MapRGBA,{format,r,g,b,a})
+	format = allocate_struct(SDL_PixelFormat)
+	sequence res = peek_struct(format,SDL_PixelFormat)
+	
+    free(format)
+	return c_func(xSDL_MapRGBA,{res,r,g,b,a})
 end function
 
-export constant xSDL_GetRGB = define_c_proc(sdl,"+SDL_GetRGB",{C_UINT,SDL_PixelFormat,C_POINTER,C_POINTER,C_POINTER})
+export constant xSDL_GetRGB = define_c_proc(sdl,"+SDL_GetRGB",{C_UINT32,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 
 public procedure SDL_GetRGB(atom pixel,atom format,atom r,atom g,atom b)
-	c_proc(xSDL_GetRGB,{pixel,format,r,g,b})
+	format = allocate_struct(SDL_PixelFormat)
+	sequence res = peek_struct(format,SDL_PixelFormat)
+	
+	free(format)
+	c_proc(xSDL_GetRGB,{pixel,res,r,g,b})
 end procedure
 
-export constant xSDL_GetRGBA = define_c_proc(sdl,"+SDL_GetRGBA",{C_UINT,SDL_PixelFormat,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
+export constant xSDL_GetRGBA = define_c_proc(sdl,"+SDL_GetRGBA",{C_UINT,C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 
 public procedure SDL_GetRGBA(atom pixel,atom format,atom r,atom g,atom b,atom a)
-	c_proc(xSDL_GetRGBA,{pixel,format,r,g,b,a})
+	format = allocate_struct(SDL_PixelFormat)
+	sequence res = peek_struct(format,SDL_PixelFormat)
+	
+	free(format)
+	
+	c_proc(xSDL_GetRGBA,{pixel,res,r,g,b,a})
 end procedure
 
 export constant xSDL_CalculateGammaRamp = define_c_proc(sdl,"+SDL_CalculateGammaRamp",{C_FLOAT,C_POINTER})
@@ -181,4 +236,4 @@ export constant xSDL_CalculateGammaRamp = define_c_proc(sdl,"+SDL_CalculateGamma
 public procedure SDL_CalculateGammaRamp(atom gamma,atom ramp)
 	c_proc(xSDL_CalculateGammaRamp,{gamma,ramp})
 end procedure
-­175.44
+­231.31
