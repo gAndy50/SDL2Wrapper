@@ -14,16 +14,13 @@ public constant TRUE = 1,
 procedure main()
 
  atom win = 0
- object surf = {}
- object event = allocate_struct(event)
- atom quit = FALSE
  
  if SDL_Init(SDL_INIT_VIDEO) = -1 then
  	puts(1,"Failed to init SDL!\n")
  	abort(0)
  end if
  
- win = SDL_CreateWindow("Simple Window",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,MAX_WIDTH,MAX_HEIGHT,SDL_WINDOW_SHOWN)
+ win = SDL_CreateWindow("Simple Window (Closes after 3 seconds)",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,MAX_WIDTH,MAX_HEIGHT,SDL_WINDOW_SHOWN)
  
  if win = -1 then
  	puts(1,"Failed to create window!\n")
@@ -38,3 +35,4 @@ procedure main()
 end procedure
 
 main()
+­23.63
