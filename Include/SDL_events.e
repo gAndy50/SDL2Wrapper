@@ -138,226 +138,229 @@ public enum type SDL_EventType
 end type
 
 public constant SDL_CommonEvent = define_c_type({
-	C_UINT, --type
-	C_UINT --timestamp
+	C_UINT32, --type
+	C_UINT32 --timestamp
 })
 
 public constant SDL_DisplayEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --display
-	C_UINT, --event
-	C_UINT, --padding1
-	C_UINT, --padding2
-	C_UINT, --padding3
-	C_INT --data1
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --display
+	C_UINT8, --event
+	C_UINT8, --padding1
+	C_UINT8, --padding2
+	C_UINT8, --padding3
+	C_INT32 --data1
 })
 
 public constant SDL_WindowEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
-	C_UINT, --event
-	C_UINT, --padding1
-	C_UINT, --padding2
-	C_UINT, --padding3
-	C_INT, --data1
-	C_INT --data2
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
+	C_UINT8, --event
+	C_UINT8, --padding1
+	C_UINT8, --padding2
+	C_UINT8, --padding3
+	C_INT32, --data1
+	C_INT32 --data2
 })
 
 public constant SDL_KeyboardEvent = define_c_type({
-	C_UINT, --type [1]
-	C_UINT, --timestamp [2]
-	C_UINT, --windowID [3]
-	C_UINT, --state [4]
-	C_UINT, --repeat [5]
-	C_UINT, --padding2 [6]
-	C_UINT, --padding3 [7]
+	C_UINT32, --type [1]
+	C_UINT32, --timestamp [2]
+	C_UINT32, --windowID [3]
+	C_UINT8, --state [4]
+	C_UINT8, --repeat [5]
+	C_UINT8, --padding2 [6]
+	C_UINT8, --padding3 [7]
 	SDL_Keysym --key that was pressed or released [8]
 })
 
 public constant SDL_TEXTEDITINGEVENT_TEXT_SIZE = 32
 
 public constant SDL_TextEditingEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
 	C_CHAR, --text
-	C_INT, --start
-	C_INT --length
+	C_INT32, --start
+	C_INT32 --length
 })
 
 public constant SDL_TextEditingExtEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
 	C_STRING, --text
-	C_INT, --start
-	C_INT --length
+	C_INT32, --start
+	C_INT32 --length
 })
 
 public constant SDL_TEXTINPUTEVENT_TEXT_SIZE = 32
 
 public constant SDL_TextInputEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
 	C_CHAR --text
 })
 
 public constant SDL_MouseMotionEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
-	C_UINT, --which
-	C_INT, --x
-	C_INT, --y
-	C_INT, --xrel
-	C_INT --yrel
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
+	C_UINT32, --which
+	C_INT32, --x
+	C_INT32, --y
+	C_INT32, --xrel
+	C_INT32 --yrel
 })
 
 public constant SDL_MouseButtonEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
-	C_UINT, --which
-	C_UINT, --button
-	C_UINT, --state
-	C_UINT, --clicks
-	C_UINT, --padding1
-	C_INT, --x
-	C_INT --y
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
+	C_UINT32, --which
+	C_UINT8, --button
+	C_UINT8, --state
+	C_UINT8, --clicks
+	C_UINT8, --padding1
+	C_INT32, --x
+	C_INT32 --y
 })
 
 public constant SDL_MouseWheelEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
-	C_UINT, --which
-	C_INT, --x
-	C_INT, --y
-	C_UINT, --direction
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
+	C_UINT32, --which
+	C_INT32, --x
+	C_INT32, --y
+	C_UINT32, --direction
 	C_FLOAT, --precisex
-	C_FLOAT --precisey
+	C_FLOAT, --precisey
+	C_INT32, --mouseX
+	C_INT32 --mouseY
 })
 
 public constant SDL_JoyAxisEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystick id which
-	C_UINT, --axis
-	C_UINT, --padding1
-	C_UINT, --padding2
-	C_UINT, --padding3
-	C_INT, --value
-	C_UINT --padding4
+	C_UINT8, --axis
+	C_UINT8, --padding1
+	C_UINT8, --padding2
+	C_UINT8, --padding3
+	C_INT16, --value
+	C_UINT16 --padding4
 })
 
 public constant SDL_JoyBallEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystick id which
-	C_UINT, --ball
-	C_UINT, --padding1
-	C_UINT, --padding2
-	C_UINT, --padding3
-	C_INT, --xrel
-	C_INT --yrel
+	C_UINT8, --ball
+	C_UINT8, --padding1
+	C_UINT8, --padding2
+	C_UINT8, --padding3
+	C_INT16, --xrel
+	C_INT16 --yrel
 })
 
 public constant SDL_JoyHatEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystick id which
-	C_UINT, --hat
-	C_UINT, --value
-	C_UINT, --padding1
-	C_UINT --padding2
+	C_UINT8, --hat
+	C_UINT8, --value
+	C_UINT8, --padding1
+	C_UINT8 --padding2
 })
 
 public constant SDL_JoyButtonEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystick id which
-	C_UINT, --button
-	C_UINT, --state
-	C_UINT, --padding1
-	C_UINT --padding2
+	C_UINT8, --button
+	C_UINT8, --state
+	C_UINT8, --padding1
+	C_UINT8 --padding2
 })
 
 public constant SDL_JoyDeviceEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_INT --which
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_INT32 --which
 })
 
 public constant SDL_JoyBatteryEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystick which
 	C_INT --joystick powerlevel
 })
 
 public constant SDL_ControllerAxisEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystickid which
-	C_UINT, --axis
-	C_UINT, --padding1
-	C_UINT, --padding2
-	C_UINT, --padding3
-	C_INT, --value
-	C_UINT --padding4
+	C_UINT8, --axis
+	C_UINT8, --padding1
+	C_UINT8, --padding2
+	C_UINT8, --padding3
+	C_INT16, --value
+	C_UINT16 --padding4
 })
 
 public constant SDL_ControllerButtonEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystickid which
-	C_UINT, --button
-	C_UINT, --state
-	C_UINT, --padding1
-	C_UINT --padding2
+	C_UINT8, --button
+	C_UINT8, --state
+	C_UINT8, --padding1
+	C_UINT8 --padding2
 })
 
 public constant SDL_ControllerDeviceEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_INT --which
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_INT32 --which
 })
 
 public constant SDL_ControllerTouchpadEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystickid which
-	C_INT, --touchpad
-	C_INT, --finger
+	C_INT32, --touchpad
+	C_INT32, --finger
 	C_FLOAT, --x
 	C_FLOAT, --y
 	C_FLOAT --pressure
 })
 
 public constant SDL_ControllerSensorEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --joystickid which
-	C_INT, --sensor
-	{C_FLOAT,3} --data (array of 3)
+	C_INT32, --sensor
+	{C_FLOAT,3}, --data (array of 3)
+	C_UINT64 --timestamp of sensor reading in microseconds, if hardware supports info
 })
 
 public constant SDL_AudioDeviceEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --which
-	C_UINT, --icapture
-	C_UINT, --padding1
-	C_UINT, --padding2
-	C_UINT --padding3
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --which
+	C_UINT8, --icapture
+	C_UINT8, --padding1
+	C_UINT8, --padding2
+	C_UINT8 --padding3
 })
 
 public constant SDL_TouchFingerEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --touchID
 	C_LONG, --fingerID
 	C_FLOAT, --x
@@ -365,73 +368,74 @@ public constant SDL_TouchFingerEvent = define_c_type({
 	C_FLOAT, --dx
 	C_FLOAT, --dy
 	C_FLOAT, --pressure
-	C_UINT --windowID
+	C_UINT32 --windowID
 })
 
 public constant SDL_MultiGestureEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --touchID
 	C_FLOAT, --dTheta
 	C_FLOAT, --dDist
 	C_FLOAT, --x
 	C_FLOAT, --y
-	C_UINT, --numFingers
-	C_UINT --padding
+	C_UINT16, --numFingers
+	C_UINT16 --padding
 })
 
 public constant SDL_DollarGestureEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_LONG, --touchID
 	C_LONG, --gestureID
-	C_UINT, --numFingers
+	C_UINT32, --numFingers
 	C_FLOAT, --error
 	C_FLOAT, --x
 	C_FLOAT --y
 })
 
 public constant SDL_DropEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_POINTER, --file
-	C_UINT --windowID
+	C_UINT32 --windowID
 })
 
 public constant SDL_SensorEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_INT, --which
-	{C_FLOAT,6} --data
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_INT32, --which
+	{C_FLOAT,6}, --data
+	C_UINT64 --timestamp of sensor reading in microseconds
 })
 
 public constant SDL_QuitEvent = define_c_type({
-	C_UINT, --type
-	C_UINT --timestamp
+	C_UINT32, --type
+	C_UINT32 --timestamp
 })
 
 public constant SDL_OSEvent = define_c_type({
-	C_UINT, --type
-	C_UINT --timestamp
+	C_UINT32, --type
+	C_UINT32 --timestamp
 })
 
 public constant SDL_UserEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
-	C_UINT, --windowID
-	C_INT, --code
+	C_UINT32, --type
+	C_UINT32, --timestamp
+	C_UINT32, --windowID
+	C_INT32, --code
 	C_POINTER, --data1
 	C_POINTER --data2
 })
 
 public constant SDL_SysWMEvent = define_c_type({
-	C_UINT, --type
-	C_UINT, --timestamp
+	C_UINT32, --type
+	C_UINT32, --timestamp
 	C_POINTER --msg
 })
 
 public constant SDL_Event = define_c_type({
-	C_UINT, --type [1]
+	C_UINT32, --type [1]
 	SDL_CommonEvent, --[2]
 	SDL_DisplayEvent, --[3]
 	SDL_WindowEvent, --[4]
@@ -487,31 +491,34 @@ public enum type SDL_eventaction
 	SDL_GETEVENT
 end type
 
-export constant xSDL_PeepEvents = define_c_func(sdl,"+SDL_PeepEvents",{C_POINTER,C_INT,C_INT,C_UINT,C_UINT},C_INT)
+export constant xSDL_PeepEvents = define_c_func(sdl,"+SDL_PeepEvents",{C_POINTER,C_INT,C_INT,C_UINT32,C_UINT32},C_INT)
 
 public function SDL_PeepEvents(atom events,atom num,SDL_eventaction action,atom min,atom max)
-	return c_func(xSDL_PeepEvents,{events,num,action,min,max})
+	events = allocate_struct(SDL_Event)
+	sequence res = peek_struct(events,SDL_Event)
+	free(events)
+	return c_func(xSDL_PeepEvents,{res,num,action,min,max})
 end function
 
-export constant xSDL_HasEvent = define_c_func(sdl,"+SDL_HasEvent",{C_UINT},C_BOOL)
+export constant xSDL_HasEvent = define_c_func(sdl,"+SDL_HasEvent",{C_UINT32},C_BOOL)
 
 public function SDL_HasEvent(atom xtype)
 	return c_func(xSDL_HasEvent,{xtype})
 end function
 
-export constant xSDL_HasEvents = define_c_func(sdl,"+SDL_HasEvents",{C_UINT,C_UINT},C_BOOL)
+export constant xSDL_HasEvents = define_c_func(sdl,"+SDL_HasEvents",{C_UINT32,C_UINT32},C_BOOL)
 
 public function SDL_HasEvents(atom min,atom max)
 	return c_func(xSDL_HasEvents,{min,max})
 end function
 
-export constant xSDL_FlushEvent = define_c_proc(sdl,"+SDL_FlushEvent",{C_UINT})
+export constant xSDL_FlushEvent = define_c_proc(sdl,"+SDL_FlushEvent",{C_UINT32})
 
 public procedure SDL_FlushEvent(atom xtype)
 	c_proc(xSDL_FlushEvent,{xtype})
 end procedure
 
-export constant xSDL_FlushEvents = define_c_proc(sdl,"+SDL_FlushEvents",{C_UINT,C_UINT})
+export constant xSDL_FlushEvents = define_c_proc(sdl,"+SDL_FlushEvents",{C_UINT32,C_UINT32})
 
 public procedure SDL_FlushEvents(atom min,atom max)
 	c_proc(xSDL_FlushEvents,{min,max})
@@ -520,25 +527,37 @@ end procedure
 export constant xSDL_PollEvent = define_c_func(sdl,"+SDL_PollEvent",{C_POINTER},C_INT)
 
 public function SDL_PollEvent(atom evt)
-	return c_func(xSDL_PollEvent,{evt})
+	evt = allocate_struct(SDL_Event)
+	sequence res = peek_struct(evt,SDL_Event)
+	free(evt)
+	return c_func(xSDL_PollEvent,{res})
 end function
 
 export constant xSDL_WaitEvent = define_c_func(sdl,"+SDL_WaitEvent",{C_POINTER},C_INT)
 
 public function SDL_WaitEvent(atom evt)
-	return c_func(xSDL_WaitEvent,{evt})
+	evt = allocate_struct(SDL_Event)
+	sequence res = peek_struct(evt,SDL_Event)
+	free(evt)
+	return c_func(xSDL_WaitEvent,{res})
 end function
 
 export constant xSDL_WaitEventTimeout = define_c_func(sdl,"+SDL_WaitEventTimeout",{C_POINTER,C_INT},C_INT)
 
 public function SDL_WaitEventTimeout(atom evt,atom tio)
-	return c_func(xSDL_WaitEventTimeout,{evt,tio})
+	evt = allocate_struct(SDL_Event)
+	sequence res = peek_struct(evt,SDL_Event)
+	free(evt)
+	return c_func(xSDL_WaitEventTimeout,{res,tio})
 end function
 
 export constant xSDL_PushEvent = define_c_func(sdl,"+SDL_PushEvent",{C_POINTER},C_INT)
 
 public function SDL_PushEvent(atom evt)
-	return c_func(xSDL_PushEvent,{evt})
+	evt = allocate_struct(SDL_Event)
+	sequence res = peek_struct(evt,SDL_Event)
+	free(evt)
+	return c_func(xSDL_PushEvent,{res})
 end function
 
 export constant SDL_EventFilter = define_c_type({
@@ -589,17 +608,17 @@ public constant SDL_QUERY = -1,
 				SDL_DISABLE = 0,
 				SDL_ENABLE = 1
 				
-export constant xSDL_EventState = define_c_func(sdl,"+SDL_EventState",{C_UINT,C_INT},C_UINT)
+export constant xSDL_EventState = define_c_func(sdl,"+SDL_EventState",{C_UINT32,C_INT},C_UINT8)
 
 public function SDL_EventState(atom xtype,atom state)
 	return c_func(xSDL_EventState,{xtype,state})
 end function 
 
-export constant xSDL_RegisterEvents = define_c_func(sdl,"+SDL_RegisterEvents",{C_INT},C_UINT)
+export constant xSDL_RegisterEvents = define_c_func(sdl,"+SDL_RegisterEvents",{C_INT},C_UINT32)
 
 public function SDL_RegisterEvents(atom num)
 	return c_func(xSDL_RegisterEvents,{num})
 end function
 
 --free(event)
-­540.34
+­617.94
