@@ -1,5 +1,6 @@
 include std/ffi.e
 include std/math.e
+include std/machine.e
 
 include SDL_error.e
 include SDL_endian.e
@@ -42,11 +43,11 @@ public constant SDL_AUDIO_ALLOW_FREQUENCY_CHANGE = 1,
 public constant SDL_AudioSpec = define_c_type({
 	C_INT, --freq
 	C_INT, --audio format
-	C_UINT, --channels
-	C_UINT, --silence
-	C_UINT, --samples
-	C_UINT, --padding
-	C_UINT, --size
+	C_UINT8, --channels
+	C_UINT8, --silence
+	C_UINT16, --samples
+	C_UINT16, --padding
+	C_UINT32, --size
 	C_POINTER, --callback
 	C_POINTER --userdata
 })
@@ -97,10 +98,16 @@ public function SDL_GetCurrentAudioDriver()
 	return c_func(xSDL_GetCurrentAudioDriver,{})
 end function
 
-export constant xSDL_OpenAudio = define_c_func(sdl,"+SDL_OpenAudio",{SDL_AudioSpec,SDL_AudioSpec},C_INT)
+export constant xSDL_OpenAudio = define_c_func(sdl,"+SDL_OpenAudio",{C_POINTER,C_POINTER},C_INT)
 
-public function SDL_OpenAudio(sequence desired,sequence obtained)
-	return c_func(xSDL_OpenAudio,{desired,obtained})
+public function SDL_OpenAudio(atom desired,atom obtained)
+	desired = allocate_struct(SDL_AudioSpec)
+	obtained = allocate_struct(SDL_AudioSpec)
+	sequence res = peek_struct(desired,SDL_AudioSpec)
+	sequence res2 = peek_struct(obtained,SDL_AudioSpec)
+	free(desired)
+	free(obtained)
+	return c_func(xSDL_OpenAudio,{res,res2})
 end function
 
 export constant xSDL_GetNumAudioDevices = define_c_func(sdl,"+SDL_GetNumAudioDevices",{C_INT},C_INT)
@@ -115,22 +122,34 @@ public function SDL_GetAudioDeviceName(atom i,atom iscap)
 	return c_func(xSDL_GetAudioDeviceName,{i,iscap})
 end function
 
-export constant xSDL_GetAudioDeviceSpec = define_c_func(sdl,"+SDL_GetAudioDeviceSpec",{C_INT,C_INT,SDL_AudioSpec},C_INT)
+export constant xSDL_GetAudioDeviceSpec = define_c_func(sdl,"+SDL_GetAudioDeviceSpec",{C_INT,C_INT,C_POINTER},C_INT)
 
-public function SDL_GetAudioDeviceSpec(atom i,atom iscap,sequence spec)
-	return c_func(xSDL_GetAudioDeviceSpec,{i,iscap,spec})
+public function SDL_GetAudioDeviceSpec(atom i,atom iscap,atom spec)
+	spec = allocate_struct(SDL_AudioSpec)
+	sequence res = peek_struct(spec,SDL_AudioSpec)
+	free(spec)
+	return c_func(xSDL_GetAudioDeviceSpec,{i,iscap,res})
 end function
 
-export constant xSDL_GetDefaultAudioInfo = define_c_func(sdl,"+SDL_GetDefaultAudioInfo",{C_STRING,SDL_AudioSpec,C_INT},C_INT)
+export constant xSDL_GetDefaultAudioInfo = define_c_func(sdl,"+SDL_GetDefaultAudioInfo",{C_STRING,C_POINTER,C_INT},C_INT)
 
-public function SDL_GetDefaultAudioInfo(sequence name,sequence spec,atom iscap)
-	return c_func(xSDL_GetDefaultAudioInfo,{name,spec,iscap})
+public function SDL_GetDefaultAudioInfo(sequence name,atom spec,atom iscap)
+	spec = allocate_struct(SDL_AudioSpec)
+	sequence res = peek_struct(spec,SDL_AudioSpec)
+	free(spec)
+	return c_func(xSDL_GetDefaultAudioInfo,{name,res,iscap})
 end function
 
-export constant xSDL_OpenAudioDevice = define_c_func(sdl,"+SDL_OpenAudioDevice",{C_STRING,C_INT,SDL_AudioSpec,SDL_AudioSpec,C_INT},C_UINT)
+export constant xSDL_OpenAudioDevice = define_c_func(sdl,"+SDL_OpenAudioDevice",{C_STRING,C_INT,C_POINTER,C_POINTER,C_INT},C_UINT)
 
 public function SDL_OpenAudioDevice(sequence device,atom iscap,sequence desired,sequence obtained,atom allow)
-	return c_func(xSDL_OpenAudioDevice,{device,iscap,desired,obtained,allow})
+	desired = allocate_struct(SDL_AudioSpec)
+	obtained = allocate_struct(SDL_AudioSpec)
+	sequence res = peek_struct(desired,SDL_AudioSpec)
+	sequence res2 = peek_struct(obtained,SDL_AudioSpec)
+	free(desired)
+	free(obtained)
+	return c_func(xSDL_OpenAudioDevice,{device,iscap,res,res2,allow})
 end function
 
 public enum type SDL_AudioStatus
@@ -163,10 +182,13 @@ public procedure SDL_PauseAudioDevice(atom dev,atom pause)
 	c_proc(xSDL_PauseAudioDevice,{dev,pause})
 end procedure
 
-export constant xSDL_LoadWAV_RW = define_c_func(sdl,"+SDL_LoadWAV_RW",{C_POINTER,C_INT,SDL_AudioSpec,C_POINTER,C_POINTER},SDL_AudioSpec)
+export constant xSDL_LoadWAV_RW = define_c_func(sdl,"+SDL_LoadWAV_RW",{C_POINTER,C_INT,C_POINTER,C_POINTER,C_POINTER},C_POINTER)
 
-public function SDL_LoadWAV_RW(atom src,atom freesrc,sequence spec,atom buf,atom len)
-	return c_func(xSDL_LoadWAV_RW,{src,freesrc,spec,buf,len})
+public function SDL_LoadWAV_RW(atom src,atom freesrc,atom spec,atom buf,atom len)
+	spec = allocate_struct(SDL_AudioSpec)
+	sequence res = peek_struct(spec,SDL_AudioSpec)
+	free(spec)
+	return c_func(xSDL_LoadWAV_RW,{src,freesrc,res,buf,len})
 end function
 
 --export constant xSDL_LoadWAV = define_c_func(sdl,"+SDL_LoadWAV",{C_POINTER,SDL_AudioSpec,C_POINTER,C_POINTER},SDL_AudioSpec)
@@ -181,16 +203,22 @@ public procedure SDL_FreeWAV(atom buf)
 	c_proc(xSDL_FreeWAV,{buf})
 end procedure
 
-export constant xSDL_BuildAudioCVT = define_c_func(sdl,"+SDL_BuildAudioCVT",{SDL_AudioCVT,C_UINT,C_UINT,C_INT,C_UINT,C_UINT,C_INT},C_INT)
+export constant xSDL_BuildAudioCVT = define_c_func(sdl,"+SDL_BuildAudioCVT",{C_POINTER,C_UINT,C_UINT,C_INT,C_UINT,C_UINT,C_INT},C_INT)
 
-public function SDL_BuildAudioCVT(sequence cvt,atom src_format,atom src_channels,atom src_rate,atom dst_format,atom dst_channels,atom dst_rate)
-	return c_func(xSDL_BuildAudioCVT,{cvt,src_format,src_channels,src_rate,dst_format,dst_channels,dst_rate})
+public function SDL_BuildAudioCVT(atom cvt,atom src_format,atom src_channels,atom src_rate,atom dst_format,atom dst_channels,atom dst_rate)
+	cvt = allocate_struct(SDL_AudioCVT)
+	sequence res = peek_struct(cvt,SDL_AudioCVT)
+	free(cvt)
+	return c_func(xSDL_BuildAudioCVT,{res,src_format,src_channels,src_rate,dst_format,dst_channels,dst_rate})
 end function
 
-export constant xSDL_ConvertAudio = define_c_func(sdl,"+SDL_ConvertAudio",{SDL_AudioCVT},C_INT)
+export constant xSDL_ConvertAudio = define_c_func(sdl,"+SDL_ConvertAudio",{C_POINTER},C_INT)
 
-public function SDL_ConvertAudio(sequence cvt)
-	return c_func(xSDL_ConvertAudio,{cvt})
+public function SDL_ConvertAudio(atom cvt)
+	cvt = allocate_struct(SDL_AudioCVT)
+	sequence res = peek_struct(cvt,SDL_AudioCVT)
+	free(cvt)
+	return c_func(xSDL_ConvertAudio,{res})
 end function
 
 export constant xSDL_NewAudioStream = define_c_func(sdl,"+SDL_NewAudioStream",{C_UINT,C_UINT,C_INT,C_UINT,C_UINT,C_INT},C_POINTER)
@@ -308,4 +336,4 @@ export constant xSDL_CloseAudioDevice = define_c_proc(sdl,"+SDL_CloseAudioDevice
 public procedure SDL_CloseAudioDevice(atom dev)
 	c_proc(xSDL_CloseAudioDevice,{dev})
 end procedure
-­309.36
+­221.37
