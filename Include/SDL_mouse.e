@@ -84,10 +84,13 @@ public function SDL_CreateCursor(atom data,atom mask,atom w,atom h,atom x,atom y
 	return c_func(xSDL_CreateCursor,{data,mask,w,h,x,y})
 end function
 
-export constant xSDL_CreateColorCursor = define_c_func(sdl,"+SDL_CreateColorCursor",{SDL_Surface,C_INT,C_INT},C_POINTER)
+export constant xSDL_CreateColorCursor = define_c_func(sdl,"+SDL_CreateColorCursor",{C_POINTER,C_INT,C_INT},C_POINTER)
 
-public function SDL_CreateColorCursor(sequence surface,atom x,atom y)
-	return c_func(xSDL_CreateColorCursor,{surface,x,y})
+public function SDL_CreateColorCursor(atom surface,atom x,atom y)
+	surface = allocate_struct(SDL_Surface)
+	sequence res = peek_struct(surface,SDL_Surface)
+	free(surface)
+	return c_func(xSDL_CreateColorCursor,{res,x,y})
 end function
 
 export constant xSDL_CreateSystemCursor = define_c_func(sdl,"+SDL_CreateSystemCursor",{C_INT},C_POINTER)
@@ -138,4 +141,4 @@ public constant SDL_BUTTON_LMASK = SDL_BUTTON_LEFT,
 				SDL_BUTTON_RMASK = SDL_BUTTON_RIGHT,
 				SDL_BUTTON_X1MASK = SDL_BUTTON_X1,
 				SDL_BUTTON_X2MASK = SDL_BUTTON_X2
-­140.37
+­93.42
