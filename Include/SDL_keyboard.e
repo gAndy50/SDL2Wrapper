@@ -1,4 +1,5 @@
 include std/ffi.e
+include std/machine.e
 
 include SDL_error.e
 include SDL_keycode.e
@@ -130,4 +131,4 @@ export constant xSDL_IsScreenKeyboardShown = define_c_func(sdl,"+SDL_IsScreenKey
 public function SDL_IsScreenKeyboardShown(atom win)
 	return c_func(xSDL_IsScreenKeyboardShown,{win})
 end function
-­119.7
+­2.21

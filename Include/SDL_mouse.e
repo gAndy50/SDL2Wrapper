@@ -1,4 +1,5 @@
 include std/ffi.e
+include std/machine.e
 
 include SDL_error.e
 include SDL_video.e
@@ -141,4 +142,4 @@ public constant SDL_BUTTON_LMASK = SDL_BUTTON_LEFT,
 				SDL_BUTTON_RMASK = SDL_BUTTON_RIGHT,
 				SDL_BUTTON_X1MASK = SDL_BUTTON_X1,
 				SDL_BUTTON_X2MASK = SDL_BUTTON_X2
-­93.42
+­2.21
