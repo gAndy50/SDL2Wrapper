@@ -6,7 +6,7 @@ This is a wrapper for SDL2 for use with the Euphoria programming library. You ca
 
 Note: This wrapper is currently using SDL 2.26.1 and will be updated as SDL 2 gets updated. For compatbility reasons, the 32-bit DLL is being used. You may use the 64-bit DLL if you'd like, but it has not been tested. 
 
-Copyright (c) 2022
+Copyright (c) 2023
 
 # License
 You use this software at your own risk. There is no warranty for this software. You may not hold the developer(s) responsible for anything you do with
