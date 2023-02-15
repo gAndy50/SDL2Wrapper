@@ -32,7 +32,7 @@ end type
 
 public constant SDL_WindowShapeParams = define_c_type({
 	C_UINT, --binarizationCutoff
-	SDL_Color --colorKey
+	C_POINTER --colorKey
 })
 
 public constant SDL_WindowShapeMode = define_c_type({
@@ -40,15 +40,15 @@ public constant SDL_WindowShapeMode = define_c_type({
 	SDL_WindowShapeParams --parameters
 })
 
-export constant xSDL_SetWindowShape = define_c_func(sdl,"+SDL_SetWindowShape",{C_POINTER,SDL_Surface,SDL_WindowShapeMode},C_INT)
+export constant xSDL_SetWindowShape = define_c_func(sdl,"+SDL_SetWindowShape",{C_POINTER,C_POINTER,C_POINTER},C_INT)
 
 public function SDL_SetWindowShape(atom win,sequence shape,sequence mode)
 	return c_func(xSDL_SetWindowShape,{win,shape,mode})
 end function
 
-export constant xSDL_GetShapedWindowMode = define_c_func(sdl,"+SDL_GetShapedWindowMode",{C_POINTER,SDL_WindowShapeMode},C_INT)
+export constant xSDL_GetShapedWindowMode = define_c_func(sdl,"+SDL_GetShapedWindowMode",{C_POINTER,C_POINTER},C_INT)
 
 public function SDL_GetShapedWindowMode(atom win,sequence mode)
 	return c_func(xSDL_GetShapedWindowMode,{win,mode})
 end function
-­7.0
+­49.108
