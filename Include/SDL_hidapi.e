@@ -47,10 +47,10 @@ end function
 export constant xSDL_hid_free_enumeration = define_c_proc(sdl,"+SDL_hid_free_enumeration",{C_POINTER})
 
 public procedure SDL_hid_free_enumeration(atom dev)
-	dev = allocate_struct(SDL_hid_device_info)
-	sequence res = peek_struct(dev,SDL_hid_device_info)
-	free(dev)
-	c_proc(xSDL_hid_free_enumeration,{res})
+--	dev = allocate_struct(SDL_hid_device_info)
+--	sequence res = peek_struct(dev,SDL_hid_device_info)
+--	free(dev)
+	c_proc(xSDL_hid_free_enumeration,{dev})
 end procedure
 
 export constant xSDL_hid_open = define_c_func(sdl,"+SDL_hid_open",{C_USHORT,C_USHORT,C_WSTRING},C_POINTER)
@@ -110,37 +110,37 @@ end procedure
 export constant xSDL_hid_get_manufacturer_string = define_c_func(sdl,"+SDL_hid_get_manufacturer_string",{C_POINTER,C_WSTRING,C_SIZE_T},C_INT)
 
 public function SDL_hid_get_manufacturer_string(atom dev,sequence st,atom max)
-	dev = allocate_struct(SDL_hid_device_info)
-	sequence res = peek_struct(dev,SDL_hid_device_info)
-	free(dev)
-	return c_func(xSDL_hid_get_manufacturer_string,{res,st,max})
+--	dev = allocate_struct(SDL_hid_device_info)
+--	sequence res = peek_struct(dev,SDL_hid_device_info)
+--	free(dev)
+	return c_func(xSDL_hid_get_manufacturer_string,{dev,st,max})
 end function
 
 export constant xSDL_hid_get_product_string = define_c_func(sdl,"+SDL_hid_get_product_string",{C_POINTER,C_WSTRING,C_SIZE_T},C_INT)
 
 public function SDL_hid_get_product_string(atom dev,sequence st,atom max)
-	dev = allocate_struct(SDL_hid_device_info)
-	sequence res = peek_struct(dev,SDL_hid_device_info)
-	free(dev)
-	return c_func(xSDL_hid_get_product_string,{res,st,max})
+--	dev = allocate_struct(SDL_hid_device_info)
+--	sequence res = peek_struct(dev,SDL_hid_device_info)
+--	free(dev)
+	return c_func(xSDL_hid_get_product_string,{dev,st,max})
 end function
 
 export constant xSDL_hid_get_serial_number_string = define_c_func(sdl,"+SDL_hid_get_serial_number_string",{C_POINTER,C_WSTRING,C_SIZE_T},C_INT)
 
 public function SDL_hid_get_serial_number_string(atom dev,sequence st,atom max)
-	dev = allocate_struct(SDL_hid_device_info)
-	sequence res = peek_struct(dev,SDL_hid_device_info)
-	free(dev)
-	return c_func(xSDL_hid_get_serial_number_string,{res,st,max})
+--	dev = allocate_struct(SDL_hid_device_info)
+--	sequence res = peek_struct(dev,SDL_hid_device_info)
+--	free(dev)
+	return c_func(xSDL_hid_get_serial_number_string,{dev,st,max})
 end function
 
 export constant xSDL_hid_get_indexed_string = define_c_func(sdl,"+SDL_hid_get_indexed_string",{C_POINTER,C_INT,C_WSTRING,C_SIZE_T},C_INT)
 
 public function SDL_hid_get_indexed_string(atom dev,atom idx,sequence st,atom max)
-	dev = allocate_struct(SDL_hid_device_info)
-	sequence res = peek_struct(dev,SDL_hid_device_info)
-	free(dev)
-	return c_func(xSDL_hid_get_indexed_string,{res,idx,st,max})
+--	dev = allocate_struct(SDL_hid_device_info)
+---	sequence res = peek_struct(dev,SDL_hid_device_info)
+--	free(dev)
+	return c_func(xSDL_hid_get_indexed_string,{dev,idx,st,max})
 end function
 
 export constant xSDL_hid_ble_scan = define_c_proc(sdl,"+SDL_hid_ble_scan",{C_BOOL})
