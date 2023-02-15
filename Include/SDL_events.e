@@ -494,10 +494,10 @@ end type
 export constant xSDL_PeepEvents = define_c_func(sdl,"+SDL_PeepEvents",{C_POINTER,C_INT,C_INT,C_UINT32,C_UINT32},C_INT)
 
 public function SDL_PeepEvents(atom events,atom num,SDL_eventaction action,atom min,atom max)
-	events = allocate_struct(SDL_Event)
-	sequence res = peek_struct(events,SDL_Event)
-	free(events)
-	return c_func(xSDL_PeepEvents,{res,num,action,min,max})
+	--events = allocate_struct(SDL_Event)
+	--sequence res = peek_struct(events,SDL_Event)
+	--free(events)
+	return c_func(xSDL_PeepEvents,{events,num,action,min,max})
 end function
 
 export constant xSDL_HasEvent = define_c_func(sdl,"+SDL_HasEvent",{C_UINT32},C_BOOL)
@@ -527,37 +527,41 @@ end procedure
 export constant xSDL_PollEvent = define_c_func(sdl,"+SDL_PollEvent",{C_POINTER},C_INT)
 
 public function SDL_PollEvent(atom evt)
-	evt = allocate_struct(SDL_Event)
-	sequence res = peek_struct(evt,SDL_Event)
-	free(evt)
-	return c_func(xSDL_PollEvent,{res})
+	return c_func(xSDL_PollEvent,{evt})
 end function
+
+--public function SDL_PollEvent(atom evt)
+--	evt = allocate_struct(SDL_Event)
+--	sequence res = peek_struct(evt,SDL_Event)
+--	free(evt)
+--	return c_func(xSDL_PollEvent,{res})
+--end function
 
 export constant xSDL_WaitEvent = define_c_func(sdl,"+SDL_WaitEvent",{C_POINTER},C_INT)
 
 public function SDL_WaitEvent(atom evt)
-	evt = allocate_struct(SDL_Event)
-	sequence res = peek_struct(evt,SDL_Event)
-	free(evt)
-	return c_func(xSDL_WaitEvent,{res})
+--	evt = allocate_struct(SDL_Event)
+--	sequence res = peek_struct(evt,SDL_Event)
+--	free(evt)
+	return c_func(xSDL_WaitEvent,{evt})
 end function
 
 export constant xSDL_WaitEventTimeout = define_c_func(sdl,"+SDL_WaitEventTimeout",{C_POINTER,C_INT},C_INT)
 
 public function SDL_WaitEventTimeout(atom evt,atom tio)
-	evt = allocate_struct(SDL_Event)
-	sequence res = peek_struct(evt,SDL_Event)
-	free(evt)
-	return c_func(xSDL_WaitEventTimeout,{res,tio})
+	--evt = allocate_struct(SDL_Event)
+--	sequence res = peek_struct(evt,SDL_Event)
+--	free(evt)
+	return c_func(xSDL_WaitEventTimeout,{evt,tio})
 end function
 
 export constant xSDL_PushEvent = define_c_func(sdl,"+SDL_PushEvent",{C_POINTER},C_INT)
 
 public function SDL_PushEvent(atom evt)
-	evt = allocate_struct(SDL_Event)
-	sequence res = peek_struct(evt,SDL_Event)
-	free(evt)
-	return c_func(xSDL_PushEvent,{res})
+--	evt = allocate_struct(SDL_Event)
+--	sequence res = peek_struct(evt,SDL_Event)
+--	free(evt)
+	return c_func(xSDL_PushEvent,{evt})
 end function
 
 export constant SDL_EventFilter = define_c_type({
@@ -621,4 +625,4 @@ public function SDL_RegisterEvents(atom num)
 end function
 
 --free(event)
-­617.94
+­563.2
