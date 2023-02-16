@@ -8,6 +8,47 @@ Note: This wrapper is currently using SDL 2.26.3 and will be updated as SDL 2 ge
 
 Copyright (c) 2023
 
+# Example
+```euphoria
+--Simple Window
+--SDL2 Wrapper for Euphoria
+
+include std/ffi.e
+include sdl.e
+--include SDL_pixels.e
+
+constant MAX_WIDTH = 640,
+		 MAX_HEIGHT = 480
+		 
+public constant TRUE = 1,
+				FALSE = 0
+
+procedure main()
+
+ atom win = 0
+ 
+ if SDL_Init(SDL_INIT_VIDEO) = -1 then
+ 	puts(1,"Failed to init SDL!\n")
+ 	abort(0)
+ end if
+ 
+ win = SDL_CreateWindow("Simple Window (Closes after 3 seconds)",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,MAX_WIDTH,MAX_HEIGHT,SDL_WINDOW_SHOWN)
+ 
+ if win = -1 then
+ 	puts(1,"Failed to create window!\n")
+ 	abort(0)
+ end if
+ 
+ SDL_Delay(3000) --3 seconds
+ 
+ 
+ SDL_DestroyWindow(win)
+ SDL_Quit()
+end procedure
+
+main()
+```
+
 # License
 You use this software at your own risk. There is no warranty for this software. You may not hold the developer(s) responsible for anything you do with
 this software. You may use this software to use the SDL2 library to write Euphoria programs. You may distribute the programs you write with this wrapper
