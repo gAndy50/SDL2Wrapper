@@ -15,7 +15,6 @@ Copyright (c) 2023
 
 include std/ffi.e
 include sdl.e
---include SDL_pixels.e
 
 constant MAX_WIDTH = 640,
 		MAX_HEIGHT = 480
