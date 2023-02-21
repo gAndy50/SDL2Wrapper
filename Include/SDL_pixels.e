@@ -63,7 +63,7 @@ public enum type SDL_PackedLayout
 	SDL_PACKEDLAYOUT_1010102
 end type
 
-export constant SDL_Color = define_c_type({
+public constant SDL_Color = define_c_type({
 	C_UINT8, --r
 	C_UINT8, --g
 	C_UINT8, --b
@@ -125,18 +125,9 @@ end function
 
 export constant xSDL_FreeFormat = define_c_proc(sdl,"+SDL_FreeFormat",{C_POINTER})
 
-public function SDL_FreePixelFormat()
-
-	atom pformat = allocate_struct(SDL_PixelFormat)
-	
-	c_proc(xSDL_FreeFormat,{pformat})
-	
-	sequence res = peek_struct(pformat,SDL_PixelFormat)
-	
-	free(pformat)
-	
-	return res
-end function
+public procedure SDL_FreeFormat(atom mat)
+	c_proc(xSDL_FreeFormat,{mat})
+end procedure
 
 export constant xSDL_AllocPalette = define_c_func(sdl,"+SDL_AllocPalette",{C_INT},C_POINTER)
 
@@ -148,43 +139,21 @@ export constant xSDL_SetPixelFormatPalette = define_c_func(sdl,"+SDL_SetPixelFor
 
 public function SDL_SetPixelFormatPalette(atom format,atom palette)
 
-	format = allocate_struct(SDL_PixelFormat)
-	palette = allocate_struct(SDL_Palette)
-	
-	sequence res = peek_struct(format,SDL_PixelFormat)
-	sequence res2 = peek_struct(palette,SDL_Palette)
-	
-	free(format)
-	free(palette)
-	
-	return c_func(xSDL_SetPixelFormatPalette,{res,res2})
+	return c_func(xSDL_SetPixelFormatPalette,{format,palette})
 end function
 
 export constant xSDL_SetPaletteColors = define_c_func(sdl,"+SDL_SetPaletteColors",{C_POINTER,C_POINTER,C_INT,C_INT},C_INT)
 
 public function SDL_SetPaletteColors(atom palette,atom colors,atom first,atom ncol)
-	palette = allocate_struct(SDL_Palette)
-	colors = allocate_struct(SDL_Color)
 	
-	sequence res = peek_struct(palette,SDL_Palette)
-	sequence res2 = peek_struct(colors,SDL_Color)
-	
-	free(palette)
-	free(colors)
-	
-	return c_func(xSDL_SetPaletteColors,{res,res2,first,ncol})
+	return c_func(xSDL_SetPaletteColors,{palette,colors,first,ncol})
 end function
 
 export constant xSDL_FreePalette = define_c_proc(sdl,"+SDL_FreePalette",{C_POINTER})
 
 public procedure SDL_FreePalette(atom pal)
-
-	pal = allocate_struct(SDL_Palette)
-	sequence res = peek_struct(pal,SDL_Palette)
 	
-	free(pal)
-	
-	c_proc(xSDL_FreePalette,{res})
+	c_proc(xSDL_FreePalette,{pal})
 	
 end procedure
 
@@ -192,43 +161,27 @@ export constant xSDL_MapRGB = define_c_func(sdl,"+SDL_MapRGB",{C_POINTER,C_UINT8
 
 public function SDL_MapRGB(atom format,atom r,atom g,atom b)
 
-	format = allocate_struct(SDL_PixelFormat)
-	sequence res = peek_struct(format,SDL_PixelFormat)
-	
-	free(format)
-	
-	return c_func(xSDL_MapRGB,{res,r,g,b})
+	return c_func(xSDL_MapRGB,{format,r,g,b})
 end function
 
 export constant xSDL_MapRGBA = define_c_func(sdl,"+SDL_MapRGBA",{C_POINTER,C_UINT8,C_UINT8,C_UINT8,C_UINT8},C_UINT32)
 
 public function SDL_MapRGBA(atom format,atom r,atom g,atom b,atom a)
-	format = allocate_struct(SDL_PixelFormat)
-	sequence res = peek_struct(format,SDL_PixelFormat)
-	
-    free(format)
-	return c_func(xSDL_MapRGBA,{res,r,g,b,a})
+
+	return c_func(xSDL_MapRGBA,{format,r,g,b,a})
 end function
 
 export constant xSDL_GetRGB = define_c_proc(sdl,"+SDL_GetRGB",{C_UINT32,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 
 public procedure SDL_GetRGB(atom pixel,atom format,atom r,atom g,atom b)
-	format = allocate_struct(SDL_PixelFormat)
-	sequence res = peek_struct(format,SDL_PixelFormat)
-	
-	free(format)
-	c_proc(xSDL_GetRGB,{pixel,res,r,g,b})
+
+	c_proc(xSDL_GetRGB,{pixel,format,r,g,b})
 end procedure
 
 export constant xSDL_GetRGBA = define_c_proc(sdl,"+SDL_GetRGBA",{C_UINT,C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 
 public procedure SDL_GetRGBA(atom pixel,atom format,atom r,atom g,atom b,atom a)
-	format = allocate_struct(SDL_PixelFormat)
-	sequence res = peek_struct(format,SDL_PixelFormat)
-	
-	free(format)
-	
-	c_proc(xSDL_GetRGBA,{pixel,res,r,g,b,a})
+	c_proc(xSDL_GetRGBA,{pixel,format,r,g,b,a})
 end procedure
 
 export constant xSDL_CalculateGammaRamp = define_c_proc(sdl,"+SDL_CalculateGammaRamp",{C_FLOAT,C_POINTER})
@@ -236,4 +189,4 @@ export constant xSDL_CalculateGammaRamp = define_c_proc(sdl,"+SDL_CalculateGamma
 public procedure SDL_CalculateGammaRamp(atom gamma,atom ramp)
 	c_proc(xSDL_CalculateGammaRamp,{gamma,ramp})
 end procedure
-­231.31
+­142.57
