@@ -63,23 +63,23 @@ public enum type SDL_PackedLayout
 	SDL_PACKEDLAYOUT_1010102
 end type
 
-public constant SDL_Color = define_c_type({
+public constant SDL_Color = define_c_struct({
 	C_UINT8, --r
 	C_UINT8, --g
 	C_UINT8, --b
 	C_UINT8 --a
 })
 
-public constant SDL_Palette = define_c_type({
+public constant SDL_Palette = define_c_struct({
 	C_INT, --ncolors
-	SDL_Color, --colors
+	C_POINTER, --colors SDL_Color
 	C_UINT32, --version
 	C_INT --refcount
 })
 
-public constant SDL_PixelFormat = define_c_type({
+public constant SDL_PixelFormat = define_c_struct({
 	C_UINT, --format
-	SDL_Palette, --palette
+	C_POINTER, --palette SDL_Palette
 	C_UINT8, --BitsPerPixel
 	C_UINT8, --BytesPerPixel
 	{C_UINT8,2}, --padding[2]
@@ -189,4 +189,4 @@ export constant xSDL_CalculateGammaRamp = define_c_proc(sdl,"+SDL_CalculateGamma
 public procedure SDL_CalculateGammaRamp(atom gamma,atom ramp)
 	c_proc(xSDL_CalculateGammaRamp,{gamma,ramp})
 end procedure
-­142.57
+­83.14

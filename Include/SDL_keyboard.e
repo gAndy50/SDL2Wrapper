@@ -8,7 +8,7 @@ include SDL_rect.e
 
 include sdl.e
 
-public constant SDL_Keysym = define_c_type({
+public constant SDL_Keysym = define_c_struct({
 	C_INT, --scancode
 	C_INT, --keycode
 	C_UINT, --mod
@@ -114,10 +114,8 @@ end function
 export constant xSDL_SetTextInputRect = define_c_proc(sdl,"+SDL_SetTextInputRect",{C_POINTER})
 
 public procedure SDL_SetTextInputRect(atom rect)
-	rect = allocate_struct(SDL_Rect)
-	sequence res = peek_struct(rect,SDL_Rect)
-	free(rect)
-	c_proc(xSDL_SetTextInputRect,{res})
+
+	c_proc(xSDL_SetTextInputRect,{rect})
 end procedure
 
 export constant xSDL_HasScreenKeyboardSupport = define_c_func(sdl,"+SDL_HasScreenKeyboardSupport",{},C_BOOL)
@@ -131,4 +129,4 @@ export constant xSDL_IsScreenKeyboardShown = define_c_func(sdl,"+SDL_IsScreenKey
 public function SDL_IsScreenKeyboardShown(atom win)
 	return c_func(xSDL_IsScreenKeyboardShown,{win})
 end function
-­2.21
+­118.35

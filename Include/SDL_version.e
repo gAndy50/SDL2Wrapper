@@ -3,7 +3,7 @@ include std/machine.e
 
 include sdl.e
 
-public constant SDL_VERSION = define_c_type({
+public constant SDL_VERSION = define_c_struct({
 	C_UINT8, --major
 	C_UINT8, --minor
 	C_UINT8 --patch
@@ -40,3 +40,4 @@ export constant xSDL_GetRevisionNumber = define_c_func(sdl,"+SDL_GetRevisionNumb
 public function SDL_GetRevisionNumber()
 	return c_func(xSDL_GetRevisionNumber,{})
 end function
+­24.8

@@ -31,7 +31,7 @@ public enum type SDL_GameControllerBindType
     SDL_CONTROLLER_BINDTYPE_HAT
 end type
 
-public constant SDL_GameControllerButtonBind = define_c_type({
+public constant SDL_GameControllerButtonBind = define_c_struct({
 	C_INT, --bindtype
 	C_INT, --button
 	C_INT, --axis
@@ -423,4 +423,4 @@ export constant xSDL_GameControllerGetSensorDataWithTimeStamp = define_c_func(sd
 public function SDL_GameControllerGetSensorDataWithTimeStamp(atom gc,atom stype,atom ts,atom data,atom num)
 	return c_func(xSDL_GameControllerGetSensorDataWithTimeStamp,{gc,stype,ts,data,num})
 end function
-­424.84
+­34.62

@@ -10,7 +10,7 @@ public enum type SDL_AssertState
 	SDL_ASSERTION_ALWAYS_IGNORE
 end type
 
-public constant SDL_AssertData = define_c_type({
+public constant SDL_AssertData = define_c_struct({
 	C_INT, --always_ignore
 	C_UINT, --trigger_count
 	C_STRING, --condition
@@ -21,7 +21,7 @@ public constant SDL_AssertData = define_c_type({
 })
 
 
-public constant SDL_AssertionHandler = define_c_type({
+public constant SDL_AssertionHandler = define_c_struct({
 	C_POINTER, --data
 	C_POINTER --userdata
 })
@@ -56,4 +56,4 @@ export constant xSDL_ResetAssertionReport = define_c_proc(sdl,"+SDL_ResetAsserti
 public procedure SDL_ResetAssertionReport()
 	c_proc(xSDL_ResetAssertionReport,{})
 end procedure
-­57.37
+­19.21

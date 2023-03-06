@@ -17,13 +17,13 @@ public enum type SDL_MessageBoxButtonFlags
 	SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = 2
 end type
 
-public constant SDL_MessageBoxButtonData = define_c_type({
+public constant SDL_MessageBoxButtonData = define_c_struct({
 	C_UINT, --flags
 	C_INT, --buttonid
 	C_STRING --text
 })
 
-public constant SDL_MessageBoxColor = define_c_type({
+public constant SDL_MessageBoxColor = define_c_struct({
 	C_UINT, --r
 	C_UINT, --g
 	C_UINT --b
@@ -38,11 +38,11 @@ public enum type SDL_MessageBoxColorType
 	SDL_MESSAGEBOX_COLOR_MAX
 end type
 
-public constant SDL_MessageBoxColorScheme = define_c_type({
+public constant SDL_MessageBoxColorScheme = define_c_struct({
 	SDL_MessageBoxColor --colors
 })
 
-public constant SDL_MessageBoxData = define_c_type({
+public constant SDL_MessageBoxData = define_c_struct({
 	C_UINT, --flags
 	C_POINTER, --window
 	C_STRING, --title
@@ -63,4 +63,4 @@ export constant xSDL_ShowSimpleMessageBox = define_c_func(sdl,"+SDL_ShowSimpleMe
 public function SDL_ShowSimpleMessageBox(atom flags,sequence title,sequence msg,atom win)
 	return c_func(xSDL_ShowSimpleMessageBox,{flags,title,msg,win})
 end function
-­64.63
+­41.59

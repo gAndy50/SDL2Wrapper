@@ -30,12 +30,12 @@ public enum type WindowShapeMode
 	ShapeModeColorKey
 end type
 
-public constant SDL_WindowShapeParams = define_c_type({
-	C_UINT, --binarizationCutoff
-	C_POINTER --colorKey
+public constant SDL_WindowShapeParams = define_c_union({
+	C_UINT8, --binarizationCutoff
+	SDL_Color --colorKey
 })
 
-public constant SDL_WindowShapeMode = define_c_type({
+public constant SDL_WindowShapeMode = define_c_struct({
 	C_INT, --mode
 	SDL_WindowShapeParams --parameters
 })
@@ -51,4 +51,4 @@ export constant xSDL_GetShapedWindowMode = define_c_func(sdl,"+SDL_GetShapedWind
 public function SDL_GetShapedWindowMode(atom win,sequence mode)
 	return c_func(xSDL_GetShapedWindowMode,{win,mode})
 end function
-­49.108
+­40.12

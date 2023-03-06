@@ -137,12 +137,12 @@ public enum type SDL_EventType
     SDL_LASTEVENT    = 0xFFFF
 end type
 
-public constant SDL_CommonEvent = define_c_type({
+public constant SDL_CommonEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32 --timestamp
 })
 
-public constant SDL_DisplayEvent = define_c_type({
+public constant SDL_DisplayEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --display
@@ -153,7 +153,7 @@ public constant SDL_DisplayEvent = define_c_type({
 	C_INT32 --data1
 })
 
-public constant SDL_WindowEvent = define_c_type({
+public constant SDL_WindowEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -165,7 +165,7 @@ public constant SDL_WindowEvent = define_c_type({
 	C_INT32 --data2
 })
 
-public constant SDL_KeyboardEvent = define_c_type({
+public constant SDL_KeyboardEvent = define_c_struct({
 	C_UINT32, --type [1]
 	C_UINT32, --timestamp [2]
 	C_UINT32, --windowID [3]
@@ -178,7 +178,7 @@ public constant SDL_KeyboardEvent = define_c_type({
 
 public constant SDL_TEXTEDITINGEVENT_TEXT_SIZE = 32
 
-public constant SDL_TextEditingEvent = define_c_type({
+public constant SDL_TextEditingEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -187,7 +187,7 @@ public constant SDL_TextEditingEvent = define_c_type({
 	C_INT32 --length
 })
 
-public constant SDL_TextEditingExtEvent = define_c_type({
+public constant SDL_TextEditingExtEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -198,14 +198,14 @@ public constant SDL_TextEditingExtEvent = define_c_type({
 
 public constant SDL_TEXTINPUTEVENT_TEXT_SIZE = 32
 
-public constant SDL_TextInputEvent = define_c_type({
+public constant SDL_TextInputEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
 	C_CHAR --text
 })
 
-public constant SDL_MouseMotionEvent = define_c_type({
+public constant SDL_MouseMotionEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -216,7 +216,7 @@ public constant SDL_MouseMotionEvent = define_c_type({
 	C_INT32 --yrel
 })
 
-public constant SDL_MouseButtonEvent = define_c_type({
+public constant SDL_MouseButtonEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -229,7 +229,7 @@ public constant SDL_MouseButtonEvent = define_c_type({
 	C_INT32 --y
 })
 
-public constant SDL_MouseWheelEvent = define_c_type({
+public constant SDL_MouseWheelEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -243,7 +243,7 @@ public constant SDL_MouseWheelEvent = define_c_type({
 	C_INT32 --mouseY
 })
 
-public constant SDL_JoyAxisEvent = define_c_type({
+public constant SDL_JoyAxisEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystick id which
@@ -255,7 +255,7 @@ public constant SDL_JoyAxisEvent = define_c_type({
 	C_UINT16 --padding4
 })
 
-public constant SDL_JoyBallEvent = define_c_type({
+public constant SDL_JoyBallEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystick id which
@@ -267,7 +267,7 @@ public constant SDL_JoyBallEvent = define_c_type({
 	C_INT16 --yrel
 })
 
-public constant SDL_JoyHatEvent = define_c_type({
+public constant SDL_JoyHatEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystick id which
@@ -277,7 +277,7 @@ public constant SDL_JoyHatEvent = define_c_type({
 	C_UINT8 --padding2
 })
 
-public constant SDL_JoyButtonEvent = define_c_type({
+public constant SDL_JoyButtonEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystick id which
@@ -287,20 +287,20 @@ public constant SDL_JoyButtonEvent = define_c_type({
 	C_UINT8 --padding2
 })
 
-public constant SDL_JoyDeviceEvent = define_c_type({
+public constant SDL_JoyDeviceEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_INT32 --which
 })
 
-public constant SDL_JoyBatteryEvent = define_c_type({
+public constant SDL_JoyBatteryEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystick which
 	C_INT --joystick powerlevel
 })
 
-public constant SDL_ControllerAxisEvent = define_c_type({
+public constant SDL_ControllerAxisEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystickid which
@@ -312,7 +312,7 @@ public constant SDL_ControllerAxisEvent = define_c_type({
 	C_UINT16 --padding4
 })
 
-public constant SDL_ControllerButtonEvent = define_c_type({
+public constant SDL_ControllerButtonEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystickid which
@@ -322,13 +322,13 @@ public constant SDL_ControllerButtonEvent = define_c_type({
 	C_UINT8 --padding2
 })
 
-public constant SDL_ControllerDeviceEvent = define_c_type({
+public constant SDL_ControllerDeviceEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_INT32 --which
 })
 
-public constant SDL_ControllerTouchpadEvent = define_c_type({
+public constant SDL_ControllerTouchpadEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystickid which
@@ -339,7 +339,7 @@ public constant SDL_ControllerTouchpadEvent = define_c_type({
 	C_FLOAT --pressure
 })
 
-public constant SDL_ControllerSensorEvent = define_c_type({
+public constant SDL_ControllerSensorEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --joystickid which
@@ -348,7 +348,7 @@ public constant SDL_ControllerSensorEvent = define_c_type({
 	C_UINT64 --timestamp of sensor reading in microseconds, if hardware supports info
 })
 
-public constant SDL_AudioDeviceEvent = define_c_type({
+public constant SDL_AudioDeviceEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --which
@@ -358,7 +358,7 @@ public constant SDL_AudioDeviceEvent = define_c_type({
 	C_UINT8 --padding3
 })
 
-public constant SDL_TouchFingerEvent = define_c_type({
+public constant SDL_TouchFingerEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --touchID
@@ -371,7 +371,7 @@ public constant SDL_TouchFingerEvent = define_c_type({
 	C_UINT32 --windowID
 })
 
-public constant SDL_MultiGestureEvent = define_c_type({
+public constant SDL_MultiGestureEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --touchID
@@ -383,7 +383,7 @@ public constant SDL_MultiGestureEvent = define_c_type({
 	C_UINT16 --padding
 })
 
-public constant SDL_DollarGestureEvent = define_c_type({
+public constant SDL_DollarGestureEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_LONG, --touchID
@@ -394,14 +394,14 @@ public constant SDL_DollarGestureEvent = define_c_type({
 	C_FLOAT --y
 })
 
-public constant SDL_DropEvent = define_c_type({
+public constant SDL_DropEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_POINTER, --file
 	C_UINT32 --windowID
 })
 
-public constant SDL_SensorEvent = define_c_type({
+public constant SDL_SensorEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_INT32, --which
@@ -409,17 +409,17 @@ public constant SDL_SensorEvent = define_c_type({
 	C_UINT64 --timestamp of sensor reading in microseconds
 })
 
-public constant SDL_QuitEvent = define_c_type({
+public constant SDL_QuitEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32 --timestamp
 })
 
-public constant SDL_OSEvent = define_c_type({
+public constant SDL_OSEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32 --timestamp
 })
 
-public constant SDL_UserEvent = define_c_type({
+public constant SDL_UserEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_UINT32, --windowID
@@ -428,13 +428,13 @@ public constant SDL_UserEvent = define_c_type({
 	C_POINTER --data2
 })
 
-public constant SDL_SysWMEvent = define_c_type({
+public constant SDL_SysWMEvent = define_c_struct({
 	C_UINT32, --type
 	C_UINT32, --timestamp
 	C_POINTER --msg
 })
 
-public constant SDL_Event = define_c_type({
+public constant SDL_Event = define_c_union({
 	C_UINT32, --type [1]
 	SDL_CommonEvent, --[2]
 	SDL_DisplayEvent, --[3]
@@ -564,7 +564,7 @@ public function SDL_PushEvent(atom evt)
 	return c_func(xSDL_PushEvent,{evt})
 end function
 
-export constant SDL_EventFilter = define_c_type({
+export constant SDL_EventFilter = define_c_struct({
 	C_POINTER, --userdata
 	C_POINTER --event
 })
@@ -625,4 +625,4 @@ public function SDL_RegisterEvents(atom num)
 end function
 
 --free(event)
-­563.2
+­549.3

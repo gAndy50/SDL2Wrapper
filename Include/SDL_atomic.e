@@ -31,7 +31,7 @@ public procedure SDL_MemoryBarrierAcquireFunction()
 	c_proc(xSDL_MemoryBarrierAcquireFunction,{})
 end procedure
 
-public constant SDL_atomic_t = define_c_type({
+public constant SDL_atomic_t = define_c_struct({
 	C_INT --value
 })
 
@@ -76,4 +76,4 @@ export constant xSDL_AtomicGetPtr = define_c_func(sdl,"+SDL_AtomicGetPtr",{C_POI
 public function SDL_AtomicGetPtr(atom a)
 	return c_func(xSDL_AtomicGetPtr,{a})
 end function
-­77.37
+­34.46

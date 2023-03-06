@@ -12,7 +12,7 @@ public enum type SDL_TouchDeviceType
 	SDL_TOUCH_DEVICE_INDIRECT_RELATIVE
 end type
 
-public constant SDL_Finger = define_c_type({
+public constant SDL_Finger = define_c_struct({
 	C_LONG, --id
 	C_FLOAT, --x
 	C_FLOAT, --y
@@ -57,4 +57,4 @@ export constant xSDL_GetTouchFinger = define_c_func(sdl,"+SDL_GetTouchFinger",{C
 public function SDL_GetTouchFinger(atom id,atom idx)
 	return c_func(xSDL_GetTouchFinger,{id,idx})
 end function
-­58.44
+­15.44

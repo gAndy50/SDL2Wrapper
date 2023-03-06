@@ -127,7 +127,7 @@ public function SDL_JoystickAttachVirtual(SDL_JoystickType jtype,atom axes,atom 
 	return c_func(xSDL_JoystickAttachVirtual,{jtype,axes,btns,hats})
 end function
 
-public constant SDL_VirtualJoystickDesc = define_c_type({
+public constant SDL_VirtualJoystickDesc = define_c_struct({
 	C_UINT, --version
 	C_UINT, --type
 	C_UINT, --naxes
@@ -435,4 +435,4 @@ export constant xSDL_JoystickCurrentPowerLevel = define_c_func(sdl,"+SDL_Joystic
 public function SDL_JoystickCurrentPowerLevel(atom joy)
 	return c_func(xSDL_JoystickCurrentPowerLevel,{joy})
 end function
-­391.111
+­430.8

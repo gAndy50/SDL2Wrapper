@@ -9,7 +9,7 @@ include std/math.e
 
 include sdl.e
 
-public constant SDL_DisplayMode = define_c_type({
+public constant SDL_DisplayMode = define_c_struct({
 	C_UINT32, --format
 	C_INT, --w
 	C_INT, --h
@@ -197,18 +197,14 @@ end function
 export constant xSDL_GetDisplayBounds = define_c_func(sdl,"+SDL_GetDisplayBounds",{C_INT,C_POINTER},C_INT)
 
 public function SDL_GetDisplayBounds(atom displayIndex,atom rect)
---	rect = allocate_struct(SDL_Rect)
---	sequence res = peek_struct(rect,SDL_Rect)
---	free(rect)
+
 	return c_func(xSDL_GetDisplayBounds,{displayIndex,rect})
 end function
 
 export constant xSDL_GetDisplayUsableBounds = define_c_func(sdl,"+SDL_GetDisplayUsableBounds",{C_INT,C_POINTER},C_INT)
 
 public function SDL_GetDisplayUsableBounds(atom displayIndex,atom rect)
---	rect = allocate_struct(SDL_Rect)
---	sequence res = peek_struct(rect,SDL_Rect)
---	free(rect)
+
 	return c_func(xSDL_GetDisplayUsableBounds,{displayIndex,rect})
 end function
 
@@ -233,57 +229,42 @@ end function
 export constant xSDL_GetDisplayMode = define_c_func(sdl,"+SDL_GetDisplayMode",{C_INT,C_INT,C_POINTER},C_INT)
 
 public function SDL_GetDisplayMode(atom displayIndex,atom modeIndex,atom mode)
---	mode = allocate_struct(SDL_DisplayMode)
---	sequence res = peek_struct(mode,SDL_DisplayMode)
---	free(mode)
+
 	return c_func(xSDL_GetDisplayMode,{displayIndex,modeIndex,mode})
 end function
 
 export constant xSDL_GetDesktopDisplayMode = define_c_func(sdl,"+SDL_GetDesktopDisplayMode",{C_INT,C_POINTER},C_INT)
 
 public function SDL_GetDesktopDisplayMode(atom displayIndex,atom mode)
---	mode = allocate_struct(SDL_DisplayMode)
---	sequence res = peek_struct(mode,SDL_DisplayMode)
---	free(mode)
+
 	return c_func(xSDL_GetDesktopDisplayMode,{displayIndex,mode})
 end function
 
 export constant xSDL_GetCurrentDisplayMode = define_c_func(sdl,"+SDL_GetCurrentDisplayMode",{C_INT,C_POINTER},C_INT)
 
 public function SDL_GetCurrentDisplayMode(atom displayIndex,atom mode)
---	mode = allocate_struct(SDL_DisplayMode)
---	sequence res = peek_struct(mode,SDL_DisplayMode)
---	free(mode)
+
 	return c_func(xSDL_GetCurrentDisplayMode,{displayIndex,mode})
 end function
 
 export constant xSDL_GetClosestDisplayMode = define_c_func(sdl,"+SDL_GetClosestDisplayMode",{C_INT,C_POINTER,C_POINTER},C_POINTER)
 
 public function SDL_GetClosestDisplayMode(atom displayIndex,atom mode,atom closest)
---	mode = allocate_struct(SDL_DisplayMode)
---	closest = allocate_struct(SDL_DisplayMode)
---	sequence res = peek_struct(mode,SDL_DisplayMode)
---	sequence res2 = peek_struct(closest,SDL_DisplayMode)
---	free(mode)
---	free(closest)
+
 	return c_func(xSDL_GetClosestDisplayMode,{displayIndex,mode,closest})
 end function
 
 export constant xSDL_GetPointDisplayIndex = define_c_func(sdl,"+SDL_GetPointDisplayIndex",{C_POINTER},C_INT)
 
 public function SDL_GetPointDisplayIndex(atom pt)
---	pt = allocate_struct(SDL_Point)
---	sequence res = peek_struct(pt,SDL_Point)
---	free(pt)
+
 	return c_func(xSDL_GetPointDisplayIndex,{pt})
 end function
 
 export constant xSDL_GetRectDisplayIndex = define_c_func(sdl,"+SDL_GetRectDisplayIndex",{C_POINTER},C_INT)
 
 public function SDL_GetRectDisplayIndex(atom rect)
---	rect = allocate_struct(SDL_Rect)
---	sequence res = peek_struct(rect,SDL_Rect)
---	free(rect)
+
 	return c_func(xSDL_GetRectDisplayIndex,{rect})
 end function
 
@@ -296,9 +277,7 @@ end function
 export constant xSDL_GetWindowDisplayMode = define_c_func(sdl,"+SDL_GetWindowDisplayMode",{C_POINTER,C_POINTER},C_INT)
 
 public function SDL_GetWindowDisplayMode(atom win,atom mode)
---	mode = allocate_struct(SDL_DisplayMode)
---	sequence res = peek_struct(mode,SDL_DisplayMode)
---	free(mode)
+
 	return c_func(xSDL_GetWindowDisplayMode,{win,mode})
 end function
 
@@ -359,9 +338,7 @@ end function
 export constant xSDL_SetWindowIcon = define_c_proc(sdl,"+SDL_SetWindowIcon",{C_POINTER,C_POINTER})
 
 public procedure SDL_SetWindowIcon(atom win,atom icon)
-	--icon = allocate_struct(SDL_Rect)
-	--sequence res = peek_struct(icon,SDL_Rect)
-	--free(icon)
+
 	c_proc(xSDL_SetWindowIcon,{win,icon})
 end procedure
 
@@ -506,9 +483,7 @@ end function
 export constant xSDL_UpdateWindowSurfaceRects = define_c_func(sdl,"+SDL_UpdateWindowSurfaceRects",{C_POINTER,C_POINTER,C_INT},C_INT)
 
 public function SDL_UpdateWindowSurfaceRects(atom win,atom rects,atom num)
---	rects = allocate_struct(SDL_Rect)
---	sequence res = peek_struct(rects,SDL_Rect)
---	free(rects)
+
 	return c_func(xSDL_UpdateWindowSurfaceRects,{win,rects,num})
 end function
 
@@ -557,9 +532,7 @@ end function
 export constant xSDL_SetWindowMouseRect = define_c_func(sdl,"+SDL_SetWindowMouseRect",{C_POINTER,C_POINTER},C_INT)
 
 public function SDL_SetWindowMouseRect(atom win,atom rect)
---	rect = allocate_struct(SDL_Rect)
---	sequence res = peek_struct(rect,SDL_Rect)
---	free(rect)
+
 	return c_func(xSDL_SetWindowMouseRect,{win,rect})
 end function
 
@@ -767,4 +740,4 @@ public constant xSDL_GetWindowSizeInPixels = define_c_proc(sdl,"+SDL_GetWindowSi
 public procedure SDL_GetWindowSizeInPixels(atom win,atom w,atom h)
 	c_proc(xSDL_GetWindowSizeInPixels,{win,w,h})
 end procedure
-­266.16
+­14.11
