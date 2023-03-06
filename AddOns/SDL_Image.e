@@ -351,7 +351,7 @@ public function IMG_SaveJPG(atom surf,sequence file,atom qua)
 	return IMG_SaveJPG_RW(surf,SDL_RWFromFile(file,"wb"),1,qua)
 end function
 
-public constant IMG_Animation = define_c_type({
+public constant IMG_Animation = define_c_struct({
 	C_INT, --w
 	C_INT, --h
 	C_INT, --count
@@ -380,10 +380,8 @@ end function
 export constant xIMG_FreeAnimation = define_c_proc(img,"+IMG_FreeAnimation",{C_POINTER})
 
 public procedure IMG_FreeAnimation(atom ani)
-	ani = allocate_struct(IMG_Animation)
-	sequence res = peek_struct(ani,IMG_Animation)
-	free(ani)
-	c_proc(xIMG_FreeAnimation,{res})
+
+	c_proc(xIMG_FreeAnimation,{ani})
 end procedure
 
 export constant xIMG_LoadGIFAnimation_RW = define_c_func(img,"+IMG_LoadGIFAnimation_RW",{C_POINTER},IMG_Animation)
@@ -391,4 +389,4 @@ export constant xIMG_LoadGIFAnimation_RW = define_c_func(img,"+IMG_LoadGIFAnimat
 public function IMG_LoadGIFAnimation_RW(atom src)
 	return c_func(xIMG_LoadGIFAnimation_RW,{src})
 end function
-­386.31
+­354.47

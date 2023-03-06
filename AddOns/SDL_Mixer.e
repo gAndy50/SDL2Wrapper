@@ -56,7 +56,7 @@ public constant MIX_DEFAULT_FORMAT = AUDIO_S16LSB
 public constant MIX_DEFAULT_CHANNELS = 2
 public constant MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME
 
-public constant Mix_Chunk = define_c_type({
+public constant Mix_Chunk = define_c_struct({
 	C_INT, --allocated
 	C_POINTER, --abuf
 	C_UINT32, --alen
@@ -158,10 +158,8 @@ end function
 export constant xMix_FreeChunk = define_c_proc(mixer,"+Mix_FreeChunk",{C_POINTER})
 
 public procedure Mix_FreeChunk(atom chun)
-	chun = allocate_struct(Mix_Chunk)
-	sequence res = peek_struct(chun,Mix_Chunk)
-	free(chun)
-	c_proc(xMix_FreeChunk,{res})
+
+	c_proc(xMix_FreeChunk,{chun})
 end procedure
 
 export constant xMix_FreeMusic = define_c_proc(mixer,"+Mix_FreeMusic",{C_POINTER})
@@ -363,19 +361,15 @@ end function
 export constant xMix_PlayChannel = define_c_func(mixer,"+Mix_PlayChannel",{C_INT,C_POINTER,C_INT},C_INT)
 
 public function Mix_PlayChannel(atom chan,atom chunk,atom loops)
-	chunk = allocate_struct(Mix_Chunk)
-	sequence res = peek_struct(chunk,Mix_Chunk)
-	free(chunk)
-	return c_func(xMix_PlayChannel,{chan,res,loops})
+
+	return c_func(xMix_PlayChannel,{chan,chunk,loops})
 end function
 
 export constant xMix_PlayChannelTimed = define_c_func(mixer,"+Mix_PlayChannelTimed",{C_INT,C_POINTER,C_INT,C_INT},C_INT)
 
 public function Mix_PlayChannelTimed(atom chan,atom chunk,atom loops,atom ticks)
-	chunk = allocate_struct(Mix_Chunk)
-	sequence res = peek_struct(chunk,Mix_Chunk)
-	free(chunk)
-	return c_func(xMix_PlayChannelTimed,{chan,res,loops,ticks})
+
+	return c_func(xMix_PlayChannelTimed,{chan,chunk,loops,ticks})
 end function
 
 export constant xMix_PlayMusic = define_c_func(mixer,"+Mix_PlayMusic",{C_POINTER,C_INT},C_INT)
@@ -399,19 +393,15 @@ end function
 export constant xMix_FadeInChannel = define_c_func(mixer,"+Mix_FadeInChannel",{C_INT,C_POINTER,C_INT,C_INT},C_INT)
 
 public function Mix_FadeInChannel(atom chan,atom chunk,atom loops,atom ms)
-	chunk = allocate_struct(Mix_Chunk)
-	sequence res = peek_struct(chunk,Mix_Chunk)
-	free(chunk)
-	return c_func(xMix_FadeInChannel,{chan,res,loops,ms})
+
+	return c_func(xMix_FadeInChannel,{chan,chunk,loops,ms})
 end function
 
 export constant xMix_FadeInChannelTimed = define_c_func(mixer,"+Mix_FadeInChannelTimed",{C_INT,C_POINTER,C_INT,C_INT,C_INT},C_INT)
 
 public function Mix_FadeInChannelTimed(atom chan,atom chunk,atom loops,atom ms,atom ticks)
-	chunk = allocate_struct(Mix_Chunk)
-	sequence res = peek_struct(chunk,Mix_Chunk)
-	free(chunk)
-	return c_func(xMix_FadeInChannelTimed,{chan,res,loops,ms,ticks})
+	
+	return c_func(xMix_FadeInChannelTimed,{chan,chunk,loops,ms,ticks})
 end function
 
 export constant xMix_Volume = define_c_func(mixer,"+Mix_Volume",{C_INT,C_INT},C_INT)
@@ -423,10 +413,8 @@ end function
 export constant xMix_VolumeChunk = define_c_func(mixer,"+Mix_VolumeChunk",{C_POINTER,C_INT},C_INT)
 
 public function Mix_VolumeChunk(atom chunk,atom vol)
-	chunk = allocate_struct(Mix_Chunk)
-	sequence res = peek_struct(chunk,Mix_Chunk)
-	free(chunk)
-	return c_func(xMix_VolumeChunk,{res,vol})
+
+	return c_func(xMix_VolumeChunk,{chunk,vol})
 end function
 
 export constant xMix_VolumeMusic = define_c_func(mixer,"+Mix_VolumeMusic",{C_INT},C_INT)
@@ -661,4 +649,4 @@ public constant Mix_SetError = "SDL_SetError"
 public constant Mix_GetError = "SDL_GetError"
 public constant Mix_ClearError = "SDL_ClearError"
 public constant Mix_OutOfMemory = "SDL_OutOfMemory"
-­648.85
+­639.9

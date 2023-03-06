@@ -1,6 +1,6 @@
 --SDL TTF Euphoria Wrapper 
 --Written by Andy P.
---Icy Viking Games Copyright (c) 2022
+--Icy Viking Games Copyright (c) 2023
 
 without warning
 
@@ -557,4 +557,4 @@ export constant xTTF_SetFontScriptName = define_c_func(ttf,"+TTF_SetFontScriptNa
 public function TTF_SetFontScriptName(atom font,sequence script)
 	return c_func(xTTF_SetFontScriptName,{font,script})
 end function
-­6.0
+­552.15
