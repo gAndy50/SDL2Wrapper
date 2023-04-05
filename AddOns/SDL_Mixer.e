@@ -20,7 +20,7 @@ atom mixer = 0
 ifdef WINDOWS then
 	mixer = open_dll("SDL2_mixer.dll")
 	elsifdef LINUX or FREEBSD then
-	mixer = open_dll("SDL_mixer.so")
+	mixer = open_dll("libSDL2_mixer.so")
 end ifdef
 
 export constant xMix_Linked_Version = define_c_func(mixer,"+Mix_Linked_Version",{},C_POINTER)
@@ -649,4 +649,4 @@ public constant Mix_SetError = "SDL_SetError"
 public constant Mix_GetError = "SDL_GetError"
 public constant Mix_ClearError = "SDL_ClearError"
 public constant Mix_OutOfMemory = "SDL_OutOfMemory"
-­639.9
+­23.22

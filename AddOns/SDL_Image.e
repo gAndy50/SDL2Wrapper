@@ -17,7 +17,7 @@ atom img = 0
 ifdef WINDOWS then
 	img = open_dll("SDL2_image.dll")
 	elsifdef LINUX or FREEBSD then
-	img = open_dll("SDL2_image.so")
+	img = open_dll("libSDL2_image.so")
 end ifdef
 
 public constant SDL_IMAGE_MAJOR_VERSION = 2,
@@ -389,4 +389,4 @@ export constant xIMG_LoadGIFAnimation_RW = define_c_func(img,"+IMG_LoadGIFAnimat
 public function IMG_LoadGIFAnimation_RW(atom src)
 	return c_func(xIMG_LoadGIFAnimation_RW,{src})
 end function
-­354.47
+­20.20
