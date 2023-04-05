@@ -13,10 +13,15 @@ public include sdl.e
 atom ttf = 0
 
 ifdef WINDOWS then
-	ttf = open_dll("SDL_ttf.dll")
+	ttf = open_dll("SDL2_ttf.dll")
 	elsifdef LINUX or FREEBSD then
-	ttf = open_dll("SDL_ttf.so")
+	ttf = open_dll("libSDL2_ttf.so")
 end ifdef
+
+if ttf = -1 then
+	puts(1,"Failed to load TTF!\n")
+	abort(0)
+end if
 
 public constant SDL_TTF_MAJOR_VERSION = 2,
 				SDL_TTF_MINOR_VERSION = 20,
@@ -557,4 +562,4 @@ export constant xTTF_SetFontScriptName = define_c_func(ttf,"+TTF_SetFontScriptNa
 public function TTF_SetFontScriptName(atom font,sequence script)
 	return c_func(xTTF_SetFontScriptName,{font,script})
 end function
-­552.15
+­18.24
