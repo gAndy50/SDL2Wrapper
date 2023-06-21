@@ -740,4 +740,16 @@ public constant xSDL_GetWindowSizeInPixels = define_c_proc(sdl,"+SDL_GetWindowSi
 public procedure SDL_GetWindowSizeInPixels(atom win,atom w,atom h)
 	c_proc(xSDL_GetWindowSizeInPixels,{win,w,h})
 end procedure
-­14.11
+
+public constant xSDL_HasWindowSurface = define_c_func(sdl,"+SDL_HasWindowSurface",{C_POINTER},C_BOOL)
+
+public function SDL_HasWindowSurface(atom win)
+	return c_func(xSDL_HasWindowSurface,{win})
+end function
+
+public constant xSDL_DestroyWindowSurface = define_c_func(sdl,"+SDL_DestroyWindowSurface",{C_POINTER},C_INT)
+
+public function SDL_DestroyWindowSurface(atom win)
+	return c_func(xSDL_DestroyWindowSurface,{win})
+end function
+­753.47
