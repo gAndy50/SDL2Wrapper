@@ -11,7 +11,7 @@ public constant SDL_VERSION = define_c_struct({
 
 public constant SDL_MAJOR_VERSION = 2,
 				SDL_MINOR_VERSION = 28,
-				SDL_PATCHLEVEL = 0
+				SDL_PATCHLEVEL = 4
 				
 export constant xSDL_GetVersion = define_c_proc(sdl,"+SDL_GetVersion",{C_POINTER})
 
