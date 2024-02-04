@@ -21,7 +21,8 @@ public enum type SDL_GameControllerType
     SDL_CONTROLLER_TYPE_NVIDIA_SHIELD,
     SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_LEFT,
     SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_RIGHT,
-    SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_PAIR
+    SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_PAIR,
+    SDL_CONTROLLER_TYPE_MAX
 end type
 
 public enum type SDL_GameControllerBindType
@@ -31,7 +32,7 @@ public enum type SDL_GameControllerBindType
     SDL_CONTROLLER_BINDTYPE_HAT
 end type
 
-public constant SDL_GameControllerButtonBind = define_c_struct({
+public constant SDL_GameControllerButtonBind = define_c_union({
 	C_INT, --bindtype
 	C_INT, --button
 	C_INT, --axis
@@ -423,4 +424,10 @@ export constant xSDL_GameControllerGetSensorDataWithTimeStamp = define_c_func(sd
 public function SDL_GameControllerGetSensorDataWithTimeStamp(atom gc,atom stype,atom ts,atom data,atom num)
 	return c_func(xSDL_GameControllerGetSensorDataWithTimeStamp,{gc,stype,ts,data,num})
 end function
-­34.62
+
+public constant xSDL_GameControllerGetSteamHandle = define_c_func(sdl,"+SDL_GameControllerGetSteamHandle",{C_POINTER},C_UINT64)
+
+public function SDL_GameControllerGetSteamHandle(atom gc)
+	return c_func(xSDL_GameControllerGetSteamHandle,{gc})
+end function
+­431.54
