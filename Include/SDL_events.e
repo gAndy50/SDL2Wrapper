@@ -93,7 +93,7 @@ public enum type SDL_EventType
     SDL_CONTROLLERTOUCHPADUP,         
     SDL_CONTROLLERSENSORUPDATE, 
     SDL_CONTROLLERUPDATECOMPLETE_RESERVED_FOR_SDL3,
-    SDL_CONTROLLERSTEAMHANDLEUPDATED       
+    SDL_CONTROLLERSTEAMHANDLEUPDATED,      
 
   
     SDL_FINGERDOWN      = 0x700,
@@ -627,4 +627,4 @@ public function SDL_RegisterEvents(atom num)
 end function
 
 --free(event)
-­96.36
+Â­96.36
