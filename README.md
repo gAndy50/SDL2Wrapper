@@ -48,7 +48,7 @@ end procedure
 main()
 ```
 
-#Another Example
+# Another Example
 ```euphoria
 --Simple event window with SDL2 FFI
 --Click the X to close the window
