@@ -23,6 +23,13 @@ ifdef WINDOWS then
 	sdl = open_dll("libSDL2.so")
 end ifdef
 
+if sdl = -1 then
+	puts(1,"Failed to init SDL!\n")
+	abort(0)
+end if
+
+--printf(1,"SDL: %d",{sdl})
+
 --SDL include files
 public include SDL_assert.e
 public include SDL_atomic.e
@@ -108,4 +115,4 @@ export constant xSDL_Quit = define_c_proc(sdl,"+SDL_Quit",{})
 public procedure SDL_Quit()
 	c_proc(xSDL_Quit,{})
 end procedure
-­23.20
+­31.2
