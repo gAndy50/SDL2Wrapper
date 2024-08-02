@@ -4,7 +4,7 @@ Wrapper of SDL 2 for Euphoria using Greg's FFI library. Special thanks to Chris 
 # About
 This is a wrapper for SDL2 for use with the Euphoria programming library. You can use SDL2 with Euphoria is the main point of this wrapper. SDL is used to make games, and multimedia applications. 
 
-Note: This wrapper is currently using SDL 2.30.5 and will be updated as SDL 2 gets updated. For compatbility reasons, the 32-bit DLL is being used. You may use the 64-bit DLL if you'd like, but it has not been tested. All example programs written by author of SDL2 Wrapper unless otherwise stated. 
+Note: This wrapper is currently using SDL 2.30.6 and will be updated as SDL 2 gets updated. For compatbility reasons, the 32-bit DLL is being used. You may use the 64-bit DLL if you'd like, but it has not been tested. All example programs written by author of SDL2 Wrapper unless otherwise stated. 
 
 Copyright (c) 2024
 
