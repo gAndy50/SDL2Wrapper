@@ -1,7 +1,7 @@
 -------------------------------------
 --EuSDL2						   --
 --Written by Andy P. (Icy_Viking)  --
---SDL Ver: 2.26.1				   --
+--SDL Ver: 2.30.10				   --
 --Euphoria Ver: 4.1.0 Beta 2	   --
 --Using FFI for Euphoria		   --
 --Icy Viking Games				   --
@@ -115,4 +115,4 @@ export constant xSDL_Quit = define_c_proc(sdl,"+SDL_Quit",{})
 public procedure SDL_Quit()
 	c_proc(xSDL_Quit,{})
 end procedure
-­31.2
+Â­31.2
