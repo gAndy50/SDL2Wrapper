@@ -1,10 +1,11 @@
 -------------------------------------
 --EuSDL2						   --
 --Written by Andy P. (Icy_Viking)  --
---SDL Ver: 2.30.10				   --
+--SDL Ver: 2.30.7				   --
 --Euphoria Ver: 4.1.0 Beta 2	   --
 --Using FFI for Euphoria		   --
 --Icy Viking Games				   --
+--Copyright (c) 2024               --
 -------------------------------------
 
 without warning
@@ -21,6 +22,8 @@ ifdef WINDOWS then
 	sdl = open_dll("SDL2.dll")
 	elsifdef LINUX or FREEBSD then
 	sdl = open_dll("libSDL2.so")
+	elsifdef OSX then
+	sdl = open_dll("libSDL2.dylib")
 end ifdef
 
 if sdl = -1 then
@@ -115,4 +118,4 @@ export constant xSDL_Quit = define_c_proc(sdl,"+SDL_Quit",{})
 public procedure SDL_Quit()
 	c_proc(xSDL_Quit,{})
 end procedure
-Â­31.2
+­26.32
